@@ -37,16 +37,19 @@
         <div class="form-container">
             <h1>Regístrate</h1>
             <form id="form-register" action="" method="post">
-                <div class="form-item">
-                    <input id="name" type="text"  name="name" autocomplete="off" class="form-input" placeholder=" " required>
-                    <label for="name" class="form-label">Nombre</label>
-                    <i class="fa-solid fa-user"></i>
+                <div class="double">
+                    <div class="form-item">
+                        <input id="name" type="text"  name="name" autocomplete="off" class="form-input" placeholder=" " required>
+                        <label for="name" class="form-label">Nombres</label>
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="form-item">
+                        <input id="surname" type="text" name="surname" autocomplete="off" class="form-input" placeholder=" " required>
+                        <label for="surname" class="form-label">Apellidos</label>
+                        <i class="fa-solid fa-user"></i>
+                    </div>
                 </div>
-                <div class="form-item">
-                    <input id="surname" type="text" name="surname" autocomplete="off" class="form-input" placeholder=" " required>
-                    <label for="surname" class="form-label">Apellido</label>
-                    <i class="fa-solid fa-user"></i>
-                </div>
+                
                 <div class="form-item">
                     <input id="mail" type="text" name="mail" autocomplete="off" class="form-input" placeholder=" " required>
                     <label for="mail" class="form-label">Correo</label>
