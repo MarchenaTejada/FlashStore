@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing page</title>
     <!-- Fuente - conexión -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
     <!-- Iconos de la página web -->
     <script src="https://kit.fontawesome.com/8219737d4a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/landing.css">
 </head>
+
 <body>
     <div class="header-top">
-         <p>Bienvenido a Flash Store</p>
+        <p>Bienvenido a Flash Store</p>
         <ul>
-            <li><a><a href="#">Nuestras Tiendas |</a></li>
-            <li><a href="#">Delivery 983 744 910 </a></li>
+            <li><a href="#"><i class="fa-solid fa-store"></i> Delivery 983 744 910 </a></li>
+            <li><a><a href="#"><i class="fa-solid fa-location-dot"></i> Nuestras Tiendas </a></li>
         </ul>
     </div>
     <header>
         <div class="header-main">
-            <h1><i class="fa-solid fa-bars"></i>FlashStore</h1>
+            <h1><i class="fa-solid fa-bars"></i> FlashStore</h1>
             <form action="#" method="get">
-                <input type="text" placeholder="Buscar teléfonos , accesorios y más...">
+                <label for="search-input">
+                    <i class="fa-solid fa-search"></i>
+                    <input id="search-input" type="text" placeholder="Buscar teléfonos, accesorios y más...">
+                    <i class="fa-solid fa-bars f"></i>
+                </label>
             </form>
             <div class="actions">
-                <a href="#">Iniciar Sesión</a> | <a href="#">Carrito</a>
+                <a href="#"><i class="fa-solid fa-user"></i> Iniciar Sesión</a> |
+                <a href="#"><i class="fa-solid fa-cart-shopping"></i> Carrito</a>
             </div>
         </div>
         <nav>
@@ -46,6 +53,29 @@
     <main>
     </main>
     <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h2>FlashStore</h2>
+                <p>Contáctanos</p>
+                <ul>
+                    <li><i class="fab fa-whatsapp"></i> WhatsApp: +51983744910</li>
+                    <li><i class="fas fa-phone-alt"></i> Llámanos: +51983744910</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h2>Servicio al Cliente</h2>
+                <ul>
+                    <li>Sobre nosotros</li>
+                    <li>Nuestras tiendas</li>
+                    <li>Términos y condiciones</li>
+                    <li>FAQ</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Todos los derechos reservados. Grupo8</p>
+        </div>
     </footer>
 </body>
+
 </html>
