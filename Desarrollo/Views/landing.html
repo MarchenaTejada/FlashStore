@@ -1,26 +1,128 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Landing page</title>
     <!-- Fuente - conexión -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"> 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/landing.css">
     <!-- Iconos de la página web -->
     <script src="https://kit.fontawesome.com/8219737d4a.js" crossorigin="anonymous"></script>
-    
 </head>
+
 <body>
     <header>
-        <nav>
-        </nav>
+        <nav></nav>
     </header>
     <main>
-       
+        <section class="gallery-presentation">
+            <div class="slider">
+                <input type="radio" name="slider" id="slide1" checked />
+                <input type="radio" name="slider" id="slide2" />
+                <input type="radio" name="slider" id="slide3" />
+
+                <div class="buttons">
+                    <label for="slide1"></label>
+                    <label for="slide2"></label>
+                    <label for="slide3"></label>
+                </div>
+
+                <div class="content">
+                    <img id="firstslide" src="assets/img/panel-gallery1.png" alt="smartWatch" />
+                    <img id="secondslide" src="assets/img/panel-gallery1.png" alt="smartWatch" />
+                    <img id="thirdslide" src="assets/img/panel-gallery1.png" alt="smartWatch" />
+                </div>
+            </div>
+
+            <button class="prev" onclick="prevSlide()">&#10094;</button>
+            <button class="next" onclick="nextSlide()">&#10095;</button>
+        </section>
+        <section class="section marcas">
+            <header>
+                <h2>Lo mejor en <span class="important">Smartphones</span></h2>
+                <button class="view-more">
+                    <span>Ver más</span>
+                    <svg width="15px" height="10px" viewBox="0 0 13 10">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                    </svg>
+                </button>
+            </header>
+            <div class="line"></div>
+            <section class="products-container">
+                <div class="product">
+                    <div class="product-image">
+                        <img src="assets/img/smartphone.png" alt="">
+                    </div>
+                    <div class="product-background"></div>
+                    <div class="product-content">
+                        <h3 class="minimize product-name">Galaxy S22 Ultra</h3>
+                        <p class="minimize product-price">S/ 3999</p>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="product-image">
+                        <img src="assets/img/smartphone.png" alt="">
+                    </div>
+                    <div class="product-background"></div>
+                    <div class="product-content">
+                        <h3 class="minimize product-name">Galaxy S22 Ultra</h3>
+                        <p class="minimize product-price">S/ 3999</p>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="product-image">
+                        <img src="assets/img/smartphone.png" alt="">
+                    </div>
+                    <div class="product-background"></div>
+                    <div class="product-content">
+                        <h3 class="minimize product-name">Galaxy S22 Ultra</h3>
+                        <p class="minimize product-price">S/ 3999</p>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="product-image">
+                        <img src="assets/img/smartphone.png" alt="">
+                    </div>
+                    <div class="product-background"></div>
+                    <div class="product-content">
+                        <h3 class="minimize product-name">Galaxy S22 Ultra</h3>
+                        <p class="minimize product-price">S/ 3999</p>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="product-image">
+                        <img src="assets/img/smartphone.png" alt="">
+                    </div>
+                    <div class="product-background"></div>
+                    <div class="product-content">
+                        <h3 class="minimize product-name">Galaxy S22 Ultra</h3>
+                        <p class="minimize product-price">S/ 3999</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section class="section best-smartphones">
+            <header>
+                <h2>Encuentra las mejores <span class="important">Marcas</span></h2>
+                <button class="view-more">
+                    <span>Ver más</span>
+                    <svg width="15px" height="10px" viewBox="0 0 13 10">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                    </svg>
+                </button>
+            </header>
+            <div class="line"></div>
+        </section>
     </main>
-    <footer>
-    </footer>
+    <footer></footer>
+    <script src="assets/js/landing.js"></script>
 </body>
+
 </html>
