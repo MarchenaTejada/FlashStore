@@ -19,7 +19,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
     <!-- Iconos de la página web -->
     <script src="https://kit.fontawesome.com/8219737d4a.js" crossorigin="anonymous"></script>
-    
 </head>
 <body>
     <main>
