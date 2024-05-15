@@ -5,12 +5,12 @@
   --font-ubuntu: "Ubuntu", sans-serif;
 }
 
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
+
 .header-top {
     height: 30px;
     background-color: #f8f8f8;
@@ -39,6 +39,14 @@ header {
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
+.header-all{
+  width: 100%;
+  z-index: 2;
+  position: fixed;
+  top: 0;
+}
+
 .header-main {
     display: flex;
     justify-content: space-between;
@@ -162,6 +170,7 @@ body {
 }
 
 main {
+  margin-top: 185px;
   padding: 2% 10%;
 }
 

@@ -15,9 +15,41 @@
 </head>
 
 <body>
+<div class="header-all">
+    <div class="header-top">
+        <p>Bienvenido a Flash Store</p>
+        <ul>
+            <li><a href="#"><i class="fa-solid fa-store"></i> Delivery 983 744 910 </a></li>
+            <li><a><a href="#"><i class="fa-solid fa-location-dot"></i> Nuestras Tiendas </a></li>
+        </ul>
+    </div>
     <header>
-        <nav></nav>
+        <div class="header-main">
+            <h1><i class="fa-solid fa-bars"></i> FlashStore</h1>
+            <form action="#" method="get">
+                <label for="search-input">
+                    <i class="fa-solid fa-search"></i>
+                    <input id="search-input" type="text" placeholder="Buscar teléfonos, accesorios y más...">
+                    <i class="fa-solid fa-bars f"></i>
+                </label>
+            </form>
+            <div class="actions">
+                <a href="#"><i class="fa-solid fa-user"></i> Iniciar Sesión</a> |
+                <a href="#"><i class="fa-solid fa-cart-shopping"></i> Carrito</a>
+            </div>
+        </div>
     </header>
+    <nav>
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Todas las Categorías</a></li>
+            <li><a href="#">Smartphones</a></li>
+            <li><a href="#">Smartwatch</a></li>
+            <li><a href="#">Tablets</a></li>
+            <li><a href="#">Accesorios</a></li>
+        </ul>
+    </nav>
+</div>
     <main>
         <section class="gallery-presentation">
             <div class="slider">
@@ -172,7 +204,30 @@
             <div class="line"></div>
             </section>
     </main>
-    <footer></footer>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h2>FlashStore</h2>
+                <p>Contáctanos</p>
+                <ul>
+                    <li><i class="fab fa-whatsapp"></i> WhatsApp: +51983744910</li>
+                    <li><i class="fas fa-phone-alt"></i> Llámanos: +51983744910</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h2>Servicio al Cliente</h2>
+                <ul>
+                    <li>Sobre nosotros</li>
+                    <li>Nuestras tiendas</li>
+                    <li>Términos y condiciones</li>
+                    <li>FAQ</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Todos los derechos reservados. Grupo8</p>
+        </div>
+    </footer>
     <script src="assets/js/landing.js"></script>
 </body>
 
