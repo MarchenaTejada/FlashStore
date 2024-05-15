@@ -251,7 +251,7 @@ main {
   align-items: flex-end;
 }
 
-.product:hover {
+.product:hover, .brand:hover {
   border: var(--primary-color) 1.5px solid;
   cursor: pointer;
   transform: scale(1.02);
