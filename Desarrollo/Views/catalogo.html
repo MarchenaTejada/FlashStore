@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo</title>
+    <!-- Fuente - conexión -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="assets/css/catalogo.css">
+    <!-- Iconos de la página web -->
+    <script src="https://kit.fontawesome.com/8219737d4a.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="header-all">
+        <div class="header-top">
+            <p>Bienvenido a Flash Store</p>
+            <ul>
+                <li><a href="#"><i class="fa-solid fa-store"></i> Delivery 983 744 910 </a></li>
+                <li><a><a href="#"><i class="fa-solid fa-location-dot"></i> Nuestras Tiendas </a></li>
+            </ul>
+        </div>
+        <header>
+            <div class="header-main">
+
+                <h1>
+                    <label for="check" class="checkbtn">
+                        <i class="fa-solid fa-bars"></i>
+                    </label>
+                    FlashStore
+                </h1>
+                <form action="#" method="get">
+                    <label for="search-input">
+                        <i class="fa-solid fa-search"></i>
+                        <input id="search-input" type="text" placeholder="Buscar teléfonos, accesorios y más...">
+                        <i class="fa-solid fa-bars f"></i>
+                    </label>
+                </form>
+                <div class="actions">
+                    <a href="login.html"><i class="fa-solid fa-user"></i> ¡Hola Marchena!</a> |
+                    <a href="#"><i class="fa-solid fa-cart-shopping"></i> Carrito</a>
+                </div>
+            </div>
+            
+        </header>
+        <nav>
+            <input type="checkbox" id="check">
+            <ul>
+                <li><a  href="index.html">Inicio</a></li>
+                <li><a id="categorias" href="catalogo.html">Todas las categorías</a></li>
+                <li><a href="#">Smartphones</a></li>
+                <li><a href="#">Smartwatch</a></li>
+                <li><a href="#">Tablets</a></li>
+                <li><a href="#">Accesorios</a></li>
+            </ul>
+        </nav>
+    </div>
+    <main>
+        <aside class="filter">
+            <div class="dropdown">
+                <div class="dropdown-title">Smartphone</div>
+                <ul class="dropdown-content">
+                    <li>
+                        <input type="radio" id="marca" name="item">
+                        <label for="marca">Marca</label>
+                        <ul class="submenu">
+                            <li><a href="#">Apple</a></li>
+                            <li><a href="#">Samsung</a></li>
+                            <li><a href="#">Huawei</a></li>
+                            <li><a href="#">Xiaomi</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <input type="radio" id="precio" name="item">
+                        <label for="precio">Precio</label>
+                        <ul class="submenu">
+                            <li><a href="#">$300</a></li>
+                            <li><a href="#">$300-$600</a></li>
+                            <li><a href="#">$600-$1000</a></li>
+                            <li><a href="#">$1000</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <input type="radio" id="tamano" name="item">
+                        <label for="tamano">Tamaño de pantalla</label>
+                        <ul class="submenu">
+                            <li><a href="#">5.0"</a></li>
+                            <li><a href="#">5.0" - 6.0"</a></li>
+                            <li><a href="#">6.0"</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <input type="radio" id="ram" name="item">
+                        <label for="ram">Memoria Ram</label>
+                        <ul class="submenu">
+                            <li><a href="#">4GB</a></li>
+                            <li><a href="#">4GB - 8GB</a></li>
+                            <li><a href="#">8GB</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <input type="radio" id="os" name="item">
+                        <label for="os">Sistema Operativo</label>
+                        <ul class="submenu">
+                            <li><a href="#">Android</a></li>
+                            <li><a href="#">iOS</a></li>
+                            <li><a href="#">Windows</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <input type="radio" id="generacion" name="item">
+                        <label for="generacion">Generación</label>
+                        <ul class="submenu">
+                            <li><a href="#">1ra</a></li>
+                            <li><a href="#">2da</a></li>
+                            <li><a href="#">3ra</a></li>
+                            <li><a href="#">4ta</a></li>
+                            <li><a href="#">5ta</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        
+        <section class="catalog">
+        <div class="container">
+            <header>
+                <h2><span class="important">106</span> productos</h2>
+            </header>
+            <div class="line"></div>
+            <section class="products-container">
+                <article class="product">
+                    <div class="product-image">
+                        <img src="assets/img/smartphone.png" alt="">
+                    </div>
+                    <div class="product-background"></div>
+                    <div class="product-content">
+                        <h3 class="minimize product-name">Galaxy S22 Ultra</h3>
+                        <p class="minimize product-price">S/ 3999</p>
+                        <button class="buy-btn"><span>Agregar al carrito</span></button>
+                    </div>
+                </article>
+                <article class="product">
+                    <div class="product-image">
+                        <img src="assets/img/smartphone.png" alt="">
+                    </div>
+                    <div class="product-background"></div>
+                    <div class="product-content">
+                        <h3 class="minimize product-name">Galaxy S22 Ultra</h3>
+                        <p class="minimize product-price">S/ 3999</p>
+                        <button class="buy-btn"><span>Agregar al carrito</span></button>
+                    </div>
+                </article>
+                <article class="product">
+                    <div class="product-image">
+                        <img src="assets/img/smartphone.png" alt="">
+                    </div>
+                    <div class="product-background"></div>
+                    <div class="product-content">
+                        <h3 class="minimize product-name">Galaxy S22 Ultra</h3>
+                        <p class="minimize product-price">S/ 3999</p>
+                        <button class="buy-btn"><span>Agregar al carrito</span></button>
+                    </div>
+                </article>
+                <article class="product">
+                    <div class="product-image">
+                        <img src="assets/img/smartphone.png" alt="">
+                    </div>
+                    <div class="product-background"></div>
+                    <div class="product-content">
+                        <h3 class="minimize product-name">Galaxy S22 Ultra</h3>
+                        <p class="minimize product-price">S/ 3999</p>
+                        <button class="buy-btn"><span>Agregar al carrito</span></button>
+                    </div>
+                </article>
+                <article class="product">
+                    <div class="product-image">
+                        <img src="assets/img/smartphone.png" alt="">
+                    </div>
+                    <div class="product-background"></div>
+                    <div class="product-content">
+                        <h3 class="minimize product-name">Galaxy S22 Ultra</h3>
+                        <p class="minimize product-price">S/ 3999</p>
+                        <button class="buy-btn"><span>Agregar al carrito</span></button>
+                    </div>
+                </article>
+                <article class="product">
+                    <div class="product-image">
+                        <img src="assets/img/smartphone.png" alt="">
+                    </div>
+                    <div class="product-background"></div>
+                    <div class="product-content">
+                        <h3 class="minimize product-name">Galaxy S22 Ultra</h3>
+                        <p class="minimize product-price">S/ 3999</p>
+                        <button class="buy-btn"><span>Agregar al carrito</span></button>
+                    </div>
+                </article>
+                <article class="product">
+                    <div class="product-image">
+                        <img src="assets/img/smartphone.png" alt="">
+                    </div>
+                    <div class="product-background"></div>
+                    <div class="product-content">
+                        <h3 class="minimize product-name">Galaxy S22 Ultra</h3>
+                        <p class="minimize product-price">S/ 3999</p>
+                        <button class="buy-btn"><span>Agregar al carrito</span></button>
+                    </div>
+                </article>
+                <article class="product">
+                    <div class="product-image">
+                        <img src="assets/img/smartphone.png" alt="">
+                    </div>
+                    <div class="product-background"></div>
+                    <div class="product-content">
+                        <h3 class="minimize product-name">Galaxy S22 Ultra</h3>
+                        <p class="minimize product-price">S/ 3999</p>
+                        <button class="buy-btn"><span>Agregar al carrito</span></button>
+                    </div>
+                </article>
+                <article class="product">
+                    <div class="product-image">
+                        <img src="assets/img/smartphone.png" alt="">
+                    </div>
+                    <div class="product-background"></div>
+                    <div class="product-content">
+                        <h3 class="minimize product-name">Galaxy S22 Ultra</h3>
+                        <p class="minimize product-price">S/ 3999</p>
+                        <button class="buy-btn"><span>Agregar al carrito</span></button>
+                    </div>
+                </article>
+                <article class="product">
+                    <div class="product-image">
+                        <img src="assets/img/smartphone.png" alt="">
+                    </div>
+                    <div class="product-background"></div>
+                    <div class="product-content">
+                        <h3 class="minimize product-name">Galaxy S22 Ultra</h3>
+                        <p class="minimize product-price">S/ 3999</p>
+                        <button class="buy-btn"><span>Agregar al carrito</span></button>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </section>
+
+
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h2>FlashStore</h2>
+                <p>Contáctanos</p>
+                <ul>
+                    <li><i class="fab fa-whatsapp"></i> WhatsApp: +51983744910</li>
+                    <li><i class="fas fa-phone-alt"></i> Llámanos: +51983744910</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h2>Servicio al Cliente</h2>
+                <ul>
+                    <li>Sobre nosotros</li>
+                    <li>Nuestras tiendas</li>
+                    <li>Términos y condiciones</li>
+                    <li>FAQ</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Todos los derechos reservados. Grupo8</p>
+        </div>
+    </footer>
+    <script src="assets/js/landing.js"></script>
+</body>
+</html>
