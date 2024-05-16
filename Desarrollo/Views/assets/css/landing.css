@@ -264,11 +264,16 @@ main {
   li a.active {
     background: none;
     border-radius: 0;
-    background-color: #007bff;
+    background-color: rgba(6, 109, 177, 0.647);
   }
   #check:checked ~ ul {
     left: 0%;
   }
+
+  header h2{
+    font-size: 19px;
+  }
+
 }
 
 /*  ---- Slider ----*/
@@ -278,7 +283,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 70%;
+  width: clamp(300px, 70%, 900px);
   margin: auto;
 }
 
@@ -533,7 +538,7 @@ main {
 
 .brands-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
   gap: 80px;
 }
 
