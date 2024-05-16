@@ -116,7 +116,7 @@
     width: clamp(400px, 90%, 900px);
     border-color: #f0f0f0;
     background-color: #ffffff90;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(12px);
     padding: 10px 0;
   }
   nav ul {
