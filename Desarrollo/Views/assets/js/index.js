@@ -2,7 +2,7 @@ let user = document.getElementById("user")
 let pass = document.getElementById("password")
 let form = document.getElementById("form")
 let parrafo = document.getElementById("warning")
-
+/*
 form.addEventListener("submit", e=>{
     e.preventDefault()
     if (user.value == "admin" && pass.value == "admin"){
@@ -10,7 +10,12 @@ form.addEventListener("submit", e=>{
     }else{
         parrafo.innerHTML = 'Usuario no encontrado'
     }
-})
+})*/
+
+form.addEventListener("submit", e=>{
+    e.preventDefault()
+        window.location.href = 'index.html';
+});
 
 user.addEventListener("blur", () => {
     let userText = document.getElementById("user").value;
