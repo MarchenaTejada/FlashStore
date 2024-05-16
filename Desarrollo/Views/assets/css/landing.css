@@ -140,6 +140,12 @@ nav a {
   font-weight: bold;
   border-radius: 20px;
 }
+
+#inicio{
+  background-color: var(--secondary-color);
+  color: #fff;
+}
+
 nav a:hover {
   background-color: var(--secondary-color);
   color: #fff;
@@ -199,11 +205,6 @@ footer {
 
 .footer-bottom {
   margin-top: 20px;
-}
-
-main {
-  margin-top: 185px;
-  padding: 2% 10%;
 }
 
 @media (max-width: 952px) {
@@ -282,6 +283,11 @@ main {
 }
 
 /*  ---- Slider ----*/
+
+main {
+  margin-top: 185px;
+  padding: 2% 10%;
+}
 
 .gallery-presentation {
   position: relative;
@@ -511,10 +517,6 @@ main {
   display: flex;
   flex-direction: column;
   transition: transform 0.4s ease;
-}
-
-.card .card-bottom {
-  align-items: flex-end;
 }
 
 .product:hover,
