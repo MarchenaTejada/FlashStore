@@ -22,7 +22,7 @@ conexion.connect((err) => {
   console.log('Conexión establecida con éxito.');
 });
 
-conexion.query('SELECT * FROM Productos', (err, results) => {
+conexion.query('SELECT * FROM Productos p INNER JOIN Categorias ct on p.categoria_id = ct.categoria_id INNER JOIN Especificaciones esp on p.especificacion_id = esp.especificacion_id', (err, results) => {
   if(err) console.log(err) 
    console.log(results)
 })
