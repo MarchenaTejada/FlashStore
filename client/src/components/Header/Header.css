@@ -4,16 +4,20 @@
   margin: 0;
   padding: 0;
   margin-bottom: 280px;
-  margin-top: 180px;
+  margin-top: 160px;
 }
 
 .body main {
   padding: 2% 10%;
 }
 
+.active{
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
 
 .header-top {
-  padding: 10px 0;
     background-color: #f8f8f8;
     padding-left: 50px;
     font-size: 14px;
@@ -144,12 +148,7 @@
     font-weight: bold;
     border-radius: 20px;
   }
-  
-  #inicio{
-    background-color: var(--secondary-color);
-    color: #fff;
-  }
-  
+
   nav a:hover {
     background-color: var(--secondary-color);
     color: #fff;
@@ -235,7 +234,7 @@
       font-size: 20px;
     }
     li a:hover,
-    li a.active {
+    .active {
       background: none;
       border-radius: 0;
       background-color: rgba(6, 109, 177, 0.647);

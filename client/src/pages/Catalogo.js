@@ -1,22 +1,25 @@
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
-import ProductCard from '../components/ProductCard/ProductCard';
+import SectionLanding from '../components/SectionLanding/SectionLanding';
+import Filter from '../components/Filter-products/Filter.js';
+import ProductsCatalog from '../components/ProductsCatalog/ProductsCatalog.js';
+import '../components/ProductsCatalog/ProductsCatalog.css';
 
 const Catalogo = () => {
   return (
-    <>
+    <div className='body'>
     <Header />
-    <main>
-    <div className="products-container">
-    <ProductCard name="Galaxy S22 Ultra" price="3999" image="https://i.ibb.co/L1RXQKS/Samsung-Galaxy-A32.webp" />
-    <ProductCard name="Galaxy S22 Ultra" price="3999" image="https://i.ibb.co/L1RXQKS/Samsung-Galaxy-A32.webp" />
-    <ProductCard name="Galaxy S22 Ultra" price="3999" image="https://i.ibb.co/L1RXQKS/Samsung-Galaxy-A32.webp" />
-    <ProductCard name="Galaxy S22 Ultra" price="3999" image="https://i.ibb.co/L1RXQKS/Samsung-Galaxy-A32.webp" />
-    <ProductCard name="Galaxy S22 Ultra" price="3999" image="https://i.ibb.co/L1RXQKS/Samsung-Galaxy-A32.webp" />
+    <main className='main'>
+    <Filter />
+    <div class="container">
+    <header>
+    <SectionLanding title={104} importantText={"productos"}/>
+    </header>
+    <ProductsCatalog/>
     </div>
     </main>
     <Footer />
-    </>
+    </div>
   );
 }
 

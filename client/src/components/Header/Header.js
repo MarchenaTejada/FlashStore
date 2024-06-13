@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './Header.css'
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
     useEffect(() => {
@@ -54,12 +54,12 @@ const Header = () => {
         <nav>
             <input type="checkbox" id="check" />
             <ul>
-                <li><a id="inicio" href="index.html">Inicio</a></li>
-                <li><a href="catalogo.html">Todas las categorías</a></li>
-                <li><a href="#">Smartphones</a></li>
-                <li><a href="#">Smartwatch</a></li>
-                <li><a href="#">Tablets</a></li>
-                <li><a href="#">Accesorios</a></li>
+                <li><NavLink id="inicio" to="/home" activeClassName="active">Inicio</NavLink></li>
+                <li><NavLink to="/catalogo" activeClassName="active">Todas las categorías</NavLink></li>
+                <li><NavLink to="/catalogo-smartphone" activeClassName="active">Smartphones</NavLink></li>
+                <li><NavLink to="catalogo-smartwatch" activeClassName="active">Smartwatch</NavLink></li>
+                <li><NavLink to="catalogo-tablets" activeClassName="active">Tablets</NavLink></li>
+                <li><NavLink to="catalogo-tablets" activeClassName="active">Accesorios</NavLink></li>
             </ul>
         </nav>
     </div>

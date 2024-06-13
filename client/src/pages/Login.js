@@ -1,4 +1,4 @@
-import LoginRegister from "../components/LoginRegister";
+import LoginRegister from "../components/LoginRegister/LoginRegister";
 function Login() {
   return (
     <div className="bg-login">
