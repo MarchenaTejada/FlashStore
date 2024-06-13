@@ -1,13 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Header.css'
+import { Link } from 'react-router-dom';
 
 const Header = () => {
+    useEffect(() => {
+        const handleScroll = () => {
+
+            let headerTop = document.querySelector('.header-top');
+            let headerAll = document.querySelector('.header-all');
+            const isScrolled = window.scrollY > 40;
+
+            headerAll.classList.toggle('fixed', isScrolled);
+            headerTop.classList.toggle('fixed', isScrolled);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
   return (
     <div className="header-all">
       <div className="header-top">
             <p>Bienvenido a Flash Store</p>
             <ul>
-                <li><a href="wa.link/z9fg3q"><i className="fa-solid fa-store"></i> Delivery 983 744 910 </a></li>
+                <li><a href="https://wa.link/z9fg3q" target='_blank' rel='noreferrer'><i className="fa-solid fa-store"></i> Delivery 983 744 910 </a></li>
                 <li><a href="#"><i className="fa-solid fa-location-dot"></i> Nuestras Tiendas </a></li>
             </ul>
         </div>
@@ -27,7 +45,7 @@ const Header = () => {
                     </label>
                 </form>
                 <div className="actions">
-                    <a href="login.html"><i className="fa-solid fa-user"></i> Iniciar Sesión</a> |
+                    <Link to="/login"><i className="fa-solid fa-user"></i> Iniciar Sesión</Link> |
                     <a href="#"><i className="fa-solid fa-cart-shopping"></i> Carrito</a>
                 </div>
             </div>
