@@ -22,23 +22,17 @@ conexion.connect((err) => {
   console.log('Conexión establecida con éxito.');
 });
 
-conexion.query('SELECT * FROM Productos p INNER JOIN Categorias ct on p.categoria_id = ct.categoria_id INNER JOIN Especificaciones esp on p.especificacion_id = esp.especificacion_id', (err, results) => {
-  if(err) console.log(err) 
-   console.log(results)
-})
+
 
 app.get('/', (req, res) => {
-  res.send('Hola mudno');
+  conexion.query('SELECT * FROM Productos p INNER JOIN Categorias ct on p.categoria_id = ct.categoria_id INNER JOIN Especificaciones esp on p.especificacion_id = esp.especificacion_id', (err, results) => {
+    if(err) console.log(err) 
+    console.log(results)
+    res.status(200).json(results);
+  })
 });
 
 app.listen(PORT, () => {
   console.log(`Servidor iniciado en el puerto http://localhost:${PORT}/`);
 });
 
-conexion.end((err) => {
-  if (err) {
-    console.error('Error cerrando la conexión: ', err);
-    return;
-  }
-  console.log('Conexión cerrada con éxito.');
-});
