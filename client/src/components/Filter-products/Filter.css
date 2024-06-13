@@ -1,8 +1,6 @@
 /*Aside*/
 
 .main{
-    margin-top: 200px;
-    padding: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -11,6 +9,7 @@
 
 
 .filter{
+    margin: 40px 0;
     justify-content: center;
   }
 

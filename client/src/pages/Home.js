@@ -18,7 +18,7 @@ const Home = () => {
             <Header />
             <main>
                 <GalleryPresentation ads={ads} />
-                <SectionLanding title="Lo mejor en" importantText="Smartphones" visible={true} />
+                <SectionLanding title="Lo mejor en" importantText="Smartphones" isVisible={true} />
                 <div className="products-container">
                     <ProductCard name="Galaxy S22 Ultra" price="3999" image="https://i.ibb.co/L1RXQKS/Samsung-Galaxy-A32.webp" />
                     <ProductCard name="Galaxy S22 Ultra" price="3999" image="https://i.ibb.co/L1RXQKS/Samsung-Galaxy-A32.webp" />
