@@ -3,6 +3,9 @@ const mysql = require ('mysql');
 const cors = require('cors');
 const app = express();
 
+app.use(cors({
+  origin: '*'
+}));
 const PORT = process.env.PORT || 8000;
 
 
@@ -24,7 +27,7 @@ conexion.connect((err) => {
 
 
 
-app.get('/', (req, res) => {
+app.get('/products', (req, res) => {
   conexion.query('SELECT * FROM Productos p INNER JOIN Categorias ct on p.categoria_id = ct.categoria_id INNER JOIN Especificaciones esp on p.especificacion_id = esp.especificacion_id', (err, results) => {
     if(err) console.log(err) 
     console.log(results)
@@ -35,4 +38,3 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor iniciado en el puerto http://localhost:${PORT}/`);
 });
-
