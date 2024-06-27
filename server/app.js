@@ -30,10 +30,10 @@ conexion.connect((err) => {
 });
 
 app.post('/registro', (req, res) => {
-  const { password, email, nombre, direccion, telefono } = req.body;
-  registerUser(password, email, nombre, direccion, telefono, (err, userId) => {
+  const { password, email, nombre, apellido, direccion, telefono } = req.body;
+  registerUser(password, email, nombre, apellido, direccion, telefono, (err, userId) => {
     if (err) {
-      console.error('Error durante el registro:', err); // Añadir registro de errores detallado
+      console.error('Error durante el registro:', err);
       res.status(500).send({ error: err.message });
     } else {
       res.status(200).send({ userId });
