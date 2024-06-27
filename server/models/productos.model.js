@@ -34,4 +34,4 @@ function obtenerProductoEspecifico(id_producto,callback) {
 
 obtenerProductoEspecifico(id_producto,(err, results) => { console.log(results)});
 //obtenerProductos((err, results) => { console.log(results)});
-module.exports = { obtenerProductos, registrarCita };
+module.exports = { obtenerProductos, obtenerProductoEspecifico };
