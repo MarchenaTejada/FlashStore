@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 import './LoginRegister.css';
 
 const LoginRegister = () => {
@@ -7,7 +8,7 @@ const LoginRegister = () => {
     const [action, setAction] = useState('');
 
     const registerLink = () => {
-        setAction(' active');
+        setAction(' activeLogin');
     };
 
     const loginLink = () => {
@@ -15,6 +16,8 @@ const LoginRegister = () => {
     };
 
     return (
+        <>
+        <Link to="/Login"> Volver</Link>
         <div className={`wrapper${action}`}>
             <div className="form-box login">
                 <form action="">
@@ -71,6 +74,7 @@ const LoginRegister = () => {
                 </form>
             </div>
         </div>
+        </>
     )
 }
 

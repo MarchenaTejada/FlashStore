@@ -1,8 +1,9 @@
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import ProductCard from '../components/ProductCard/ProductCard';
 import GalleryPresentation from '../components/Banner/Banner';
-import SectionLanding from "../components/SectionLanding/SectionLanding"
+import SectionLanding from "../components/SectionLanding/SectionLanding";
 
 
 const ads = [
@@ -13,6 +14,15 @@ const ads = [
 
 
 const Home = () => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:8000/products')
+            .then(response => response.json())
+            .then(data => setProducts(data.slice(9, 14)))
+            .catch(error => console.error('Error fetching products:', error));
+    }, []);
+
     return (
         <div className='body'>
             <Header />
@@ -20,11 +30,9 @@ const Home = () => {
                 <GalleryPresentation ads={ads} />
                 <SectionLanding title="Lo mejor en" importantText="Smartphones" isVisible={true} />
                 <div className="products-container">
-                    <ProductCard name="Galaxy S22 Ultra" price="3999" image="https://i.ibb.co/L1RXQKS/Samsung-Galaxy-A32.webp" />
-                    <ProductCard name="Galaxy S22 Ultra" price="3999" image="https://i.ibb.co/L1RXQKS/Samsung-Galaxy-A32.webp" />
-                    <ProductCard name="Galaxy S22 Ultra" price="3999" image="https://i.ibb.co/L1RXQKS/Samsung-Galaxy-A32.webp" />
-                    <ProductCard name="Galaxy S22 Ultra" price="3999" image="https://i.ibb.co/L1RXQKS/Samsung-Galaxy-A32.webp" />
-                    <ProductCard name="Galaxy S22 Ultra" price="3999" image="https://i.ibb.co/L1RXQKS/Samsung-Galaxy-A32.webp" />
+                    {products.map(product => (
+                        <ProductCard key={product.producto_id} product={product} />
+                    ))}
                 </div>
                 <SectionLanding title="Encuentra las mejores" importantText="Marcas" />
             </main>

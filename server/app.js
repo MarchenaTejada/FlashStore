@@ -2,7 +2,11 @@ const express = require('express');
 const mysql = require ('mysql');
 const cors = require('cors');
 const app = express();
+const { obtenerProductos, obtenerProductoEspecifico } = require("./models/productos.model")
 
+app.use(cors({
+  origin: '*'
+}));
 const PORT = process.env.PORT || 8000;
 
 
@@ -23,13 +27,13 @@ conexion.connect((err) => {
 });
 
 
+app.get('/productos', (req, res) => {
+  obtenerProductos((err, results) => { res.send(results)});
+});
 
-app.get('/', (req, res) => {
-  conexion.query('SELECT * FROM Productos p INNER JOIN Categorias ct on p.categoria_id = ct.categoria_id INNER JOIN Especificaciones esp on p.especificacion_id = esp.especificacion_id', (err, results) => {
-    if(err) console.log(err) 
-    console.log(results)
-    res.status(200).json(results);
-  })
+app.get('/producto/:id', (req, res) => {
+  const id = req.params.id
+  obtenerProductoEspecifico(id,(err, results) => { res.send(results)});
 });
 
 app.listen(PORT, () => {
