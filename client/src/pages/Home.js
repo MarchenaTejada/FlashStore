@@ -19,7 +19,7 @@ const Home = () => {
     useEffect(() => {
         fetch('http://localhost:8000/products')
             .then(response => response.json())
-            .then(data => setProducts(data.slice(9, 14))) // Solo tomar los primeros 5 productos
+            .then(data => setProducts(data.slice(9, 14)))
             .catch(error => console.error('Error fetching products:', error));
     }, []);
 
