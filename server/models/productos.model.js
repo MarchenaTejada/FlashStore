@@ -24,7 +24,6 @@ function obtenerProductoEspecifico(id_producto,callback) {
     WHERE p.producto_id = ?`;
     connection.query(consulta2 ,[id_producto] , (err, results) => {
       connection.end();
-      console.error("Tas cagao om");
       if (err) {
         return callback(err, null);
       }
@@ -32,6 +31,6 @@ function obtenerProductoEspecifico(id_producto,callback) {
     });
 }
 
-obtenerProductoEspecifico(id_producto,(err, results) => { console.log(results)});
+// obtenerProductoEspecifico(id_producto,(err, results) => { console.log(results)});
 //obtenerProductos((err, results) => { console.log(results)});
 module.exports = { obtenerProductos, obtenerProductoEspecifico };
