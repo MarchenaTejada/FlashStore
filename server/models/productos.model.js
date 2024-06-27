@@ -31,6 +31,21 @@ function obtenerProductoEspecifico(id_producto,callback) {
     });
 }
 
+function updateImgProduct(id_producto, image, callback) {
+  const connection = createConnection();
+  consulta2= `UPDATE Productos
+SET imagen = ?
+WHERE Productos.producto_id = ?;`;
+    connection.query(consulta2 ,[image, id_producto] , (err, results) => {
+      connection.end();
+      if (err) {
+        return callback(err, null);
+      }
+      return callback(null, results);
+    });
+}
+
 // obtenerProductoEspecifico(id_producto,(err, results) => { console.log(results)});
 //obtenerProductos((err, results) => { console.log(results)});
-module.exports = { obtenerProductos, obtenerProductoEspecifico };
+
+module.exports = { obtenerProductos, obtenerProductoEspecifico,updateImgProduct};
