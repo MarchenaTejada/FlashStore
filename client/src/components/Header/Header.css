@@ -16,7 +16,6 @@
   color: #fff;
 }
 
-
 .header-top {
     background-color: #f8f8f8;
     padding-left: 50px;
@@ -73,6 +72,7 @@
     padding: 10px 20px;
   }
   .header-main h1 {
+    display: flex;
     margin: 0;
     font-size: 24px;
     color: #008ecc;
@@ -88,6 +88,15 @@
     display: none;
   }
   
+  .imgLogo{
+    display: block;
+    margin: 0 auto;
+  }
+
+  .imgLogo img{
+    width: 110px;
+  }
+
   .header-main form {
     text-align: center;
     flex-grow: 1;
@@ -200,7 +209,8 @@
     }
   
     .header-main h1{
-      display: block;
+      display: flex;
+      align-items: center;
       width: 100%;
     }
   

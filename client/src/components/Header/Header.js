@@ -35,7 +35,7 @@ const Header = () => {
                     <label htmlFor="check" className="checkbtn">
                         <i className="fa-solid fa-bars"></i>
                     </label>
-                    FlashStore
+                    <Link className='imgLogo' to={'/Home'} target="_blank"><img src='/logo.png'></img></Link>
                 </h1>
                 <form action="#" method="get">
                     <label htmlFor="search-input">
