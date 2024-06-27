@@ -26,8 +26,7 @@ conexion.connect((err) => {
 });
 
 
-
-app.get('/products', (req, res) => {
+app.get('/', (req, res) => {
   conexion.query('SELECT * FROM Productos p INNER JOIN Categorias ct on p.categoria_id = ct.categoria_id INNER JOIN Especificaciones esp on p.especificacion_id = esp.especificacion_id', (err, results) => {
     if(err) console.log(err) 
     console.log(results)
@@ -38,3 +37,4 @@ app.get('/products', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor iniciado en el puerto http://localhost:${PORT}/`);
 });
+
