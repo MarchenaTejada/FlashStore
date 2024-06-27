@@ -7,6 +7,7 @@ const LoginRegister = () => {
     const [action, setAction] = useState('');
     const [registerData, setRegisterData] = useState({
         nombre: '',
+        apellido: '',
         email: '',
         telefono: '',
         password: ''
@@ -38,6 +39,7 @@ const LoginRegister = () => {
             body: JSON.stringify({
                 password: registerData.password,
                 email: registerData.email,
+                apellido: registerData.apellido,
                 nombre: registerData.nombre,
                 direccion: null, 
                 telefono: registerData.telefono

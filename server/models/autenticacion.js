@@ -1,7 +1,7 @@
 const { createConnection } = require('../database/database.js');
 const bcrypt = require('bcryptjs');
 
-function registerUser(password, email, nombre, direccion, telefono, callback) {
+function registerUser(password, email, nombre, apellido, direccion, telefono, callback) {
   const connection = createConnection();
   const saltRounds = 5;
 
@@ -31,7 +31,7 @@ function registerUser(password, email, nombre, direccion, telefono, callback) {
 
         const usuario_id = cuentaResult.insertId;
 
-        connection.query(usuarioQuery, [nombre, "Apellido", direccion, telefono], (err, usuarioResult) => {
+        connection.query(usuarioQuery, [nombre, apellido, direccion, telefono], (err, usuarioResult) => {
           if (err) {
             return connection.rollback(() => {
               connection.end();
@@ -47,7 +47,7 @@ function registerUser(password, email, nombre, direccion, telefono, callback) {
               });
             }
 
-            connection.end(); // Cerrar conexión después de la transacción completa
+            connection.end();
             callback(null, usuario_id);
           });
         });
