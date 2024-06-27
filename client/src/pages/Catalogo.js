@@ -26,7 +26,7 @@ const Catalogo = () => {
     <Filter />
     <div class="container">
     <header>
-    <SectionLanding title={104} importantText={"productos"}/>
+    <SectionLanding title={products.length} importantText={"productos"}/>
     </header>
     <ProductsCatalog products={products}/>
     </div>
