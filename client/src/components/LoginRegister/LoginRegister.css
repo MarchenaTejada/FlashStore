@@ -29,11 +29,13 @@
 }
 
 .wrapper.activeLogin {
-    height: 580px;
+    height: 600px;
 }
 
 .wrapper .form-box {
+  margin: auto;
     width: 100%;
+    height: 100%;
     padding: 40px;
 }
 
@@ -71,7 +73,7 @@ form h1 {
 
 form .input-box {
     position: relative;
-    margin: 8px 0;
+    margin: 6px 0;
 }
 
 .input-box input {
@@ -84,7 +86,7 @@ form .input-box {
     border-radius: 20px;
     font-size: 16px;
     color: var(--primary-color);
-    padding: 20px 45px 20px 20px;
+    padding: 15px 45px 15px 20px;
 }
 
 .input-box input::placeholder {
@@ -101,8 +103,8 @@ form .input-box {
 form .remember-forgot {
     display: flex;
     justify-content: space-between;
-    font-size: 14.5px;
-    margin-bottom: 15px;
+    font-size: 14px;
+    margin-bottom: 10px;
 }
 
 .remember-forgot label input {
@@ -142,7 +144,6 @@ form button:hover{
 form .register-link {
     font-size: 14.5px;
     text-align: center;
-    margin: 20px 0 15px;
 }
 
 .register-link p a {
