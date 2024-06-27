@@ -94,7 +94,7 @@ const LoginRegister = () => {
                             <FaUser className='icon' />
                         </div>
                         <div className="input-box">
-                            <input type="text" name="apellido" placeholder='Apellidos' value={registerData.nombre} onChange={handleInputChange} required />
+                            <input type="text" name="apellido" placeholder='Apellidos' value={registerData.apellido} onChange={handleInputChange} required />
                             <FaUser className='icon' />
                         </div>
                         <div className="input-box">
