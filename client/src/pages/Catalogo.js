@@ -4,8 +4,21 @@ import SectionLanding from '../components/SectionLanding/SectionLanding';
 import Filter from '../components/Filter-products/Filter.js';
 import ProductsCatalog from '../components/ProductsCatalog/ProductsCatalog.js';
 import '../components/ProductsCatalog/ProductsCatalog.css';
+import { useState, useEffect } from 'react';
+import LoaderPage from '../components/LoaderPage/LoaderPage.jsx';
 
 const Catalogo = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:8000/productos')
+      .then(response => response.json()) 
+      .then(data => setProducts(data)) 
+      .catch(error => console.error('Error fetching products:', error)); 
+  }, []);
+  if (products.length ===0) {
+    return <LoaderPage/>;
+  }   
   return (
     <div className='body'>
     <Header />
@@ -15,7 +28,7 @@ const Catalogo = () => {
     <header>
     <SectionLanding title={104} importantText={"productos"}/>
     </header>
-    <ProductsCatalog/>
+    <ProductsCatalog products={products}/>
     </div>
     </main>
     <Footer />

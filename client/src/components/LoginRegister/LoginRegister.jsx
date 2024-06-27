@@ -17,10 +17,10 @@ const LoginRegister = () => {
 
     return (
         <>
-        <Link to="/Login"> Volver</Link>
         <div className={`wrapper${action}`}>
             <div className="form-box login">
-                <form action="">
+                <form action="" className='formLoginRegister'>
+                <Link className='imgLogoLogin' to={'/Home'}><img src='./logo.png'></img></Link>
                     <h1>Inicio de sesión</h1>
                     <div className="input-box">
                         <input type="text" placeholder='Nombre de usuario' required />
@@ -46,7 +46,8 @@ const LoginRegister = () => {
             </div>
 
             <div className="form-box register">
-                <form action="">
+                <form action="" className='formLoginRegister'>
+                <Link className='imgLogoLogin' to={'/Home'}><img src='./logo.png'></img></Link>
                     <h1>Registro</h1>
                     <div className="input-box">
                         <input type="text" placeholder='Nombre de usuario' required />
@@ -74,6 +75,7 @@ const LoginRegister = () => {
                 </form>
             </div>
         </div>
+        <Link to="/Home" className='buttonVolver'> <div className="arrow">&lt;</div> Volver a la página principal</Link>
         </>
     )
 }

@@ -62,14 +62,16 @@
 }
 
 form h1 {
-    margin-top: 40px;
-    font-size: 36px;
+    color: #353535;
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 28px;
     text-align: center;
 }
 
 form .input-box {
     position: relative;
-    margin: 30px 0;
+    margin: 8px 0;
 }
 
 .input-box input {
@@ -88,7 +90,6 @@ form .input-box {
 .input-box input::placeholder {
     color: rgba(0, 170, 255, 0.7);
 }
-
 
 .input-box .icon {
     position: absolute;
@@ -153,3 +154,78 @@ form .register-link {
 .register-link p a:hover {
     text-decoration: underline;
 }
+
+.bg-login{
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonVolver {
+    margin-top: 20px;
+    width: 230px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 0px 40px;
+    background-color: var(--primary-color);
+    text-decoration: none;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    transition-duration: .2s;
+  }
+  
+  .arrow {
+    position: absolute;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .buttonVolver:hover {
+    background-color: #009be8;
+    transition-duration: .2s;
+  }
+  
+  .buttonVolver:hover .arrow {
+    animation: slide-right .6s ease-out both;
+  }
+
+  @keyframes slide-right {
+    0% {
+      transform: translateX(-10px);
+      opacity: 0;
+    }
+  
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .button:active {
+    transform: translate(1px , 1px);
+    transition-duration: .2s;
+  }
+  
+  .formLoginRegister{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .imgLogoLogin{
+    margin: 0 auto;
+  }
+
+  .imgLogoLogin img{
+    width: 90px;
+    opacity: 0.5;
+  }
