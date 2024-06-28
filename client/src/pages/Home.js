@@ -17,7 +17,7 @@ const Home = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:8000/products')
+        fetch('http://localhost:8000/productos')
             .then(response => response.json())
             .then(data => setProducts(data.slice(9, 14)))
             .catch(error => console.error('Error fetching products:', error));

@@ -5,7 +5,7 @@ const ProductCard = ({ product, onClick }) => {
   const { nombre, precio, stock, imagen } = product;
 
   return (
-    <article className="product"onClick={() => onClick(product)} > 
+    <article className="product" onClick={onClick}> 
       <div className="product-image">
         <img src={imagen} alt={nombre} />
       </div>
@@ -14,7 +14,7 @@ const ProductCard = ({ product, onClick }) => {
         <h3 className="minimize product-name">{nombre}</h3>
         <p className="minimize product-price"> $ {precio}</p>
         <p className="minimize product-stock">Stock: {stock}</p>
-        <button className="buy-btn"><span>Agregar al carrito</span></button>
+        <button className="buy-btn" ><span>Agregar al carrito</span></button>
       </div>
     </article>
   );

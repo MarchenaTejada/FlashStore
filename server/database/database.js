@@ -14,7 +14,7 @@ function createConnection() {
       console.error('Error conectando a la base de datos: ', err);
       return;
     }
-    console.log('Conexión establecida con éxito.');
+    // console.log('Conexión establecida con éxito.');
   });
 
   return connection;
