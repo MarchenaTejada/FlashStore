@@ -13,6 +13,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/product/:productId" element={<Detalle />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
         </Routes>
     </BrowserRouter>
   );

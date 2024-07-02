@@ -1,28 +1,33 @@
 .products-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 35px;
   }
   
   .product {
     box-sizing: border-box;
-    border: var(--primary-color);
+    border: #dddddd 2px solid;
     background: #f5f5ff;
     color: black;
     position: relative;
-    border-radius: 1.2em;
+    border-radius: 0.8em;
     padding-top: 1em;
     transition: all 0.4s ease;
+    width: 290px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   
   .product-image img {
     user-select: none;
-    height: 200px;
+    padding: 5px 0;
+    height: 230px;
   }
   
   .product-image {
-    display: grid;
-    place-items: center;
+    text-align: center;
+    height: 100%;
     pointer-events: none;
     transition: transform 0.4s ease;
   }
@@ -36,21 +41,28 @@
     flex-direction: column;
     transition: transform 0.4s ease;
   }
+
+  .product-content h3{
+    font-weight: 500;
+  }
+
+  .product-price{
+    margin: 0;
+    margin-bottom: 15px;
+    font-size: 25px;
+    font-weight: 500;
+    color: var(--primary-color);
+  }
   
   .product:hover,
   .brand-logo:hover {
-    border: var(--primary-color) 1.5px solid;
+    border: var(--secondary-color) 2px solid;
     cursor: pointer;
-    transform: scale(1.02);
     box-shadow: 22px 24px 29px -25px rgba(0, 0, 0, 0.35);
   }
   
-  .product-content .minimize {
-    transition: transform 0.4s ease;
-  }
-  
-  .product:hover .product-content .minimize {
-    transform: scale(0.97);
+  .product:hover{
+    transform: scale(1.02);
   }
   
   .product:hover .product-image {
@@ -80,4 +92,10 @@
 
   .buy-btn:active{
     transform: scale(0.96);
+  }
+
+  .container-tags{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
   }
