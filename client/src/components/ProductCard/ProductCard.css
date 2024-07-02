@@ -12,11 +12,11 @@
     position: relative;
     border-radius: 0.8em;
     padding-top: 1em;
-    transition: all 0.4s ease;
     width: 290px;
     display:flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: all 0.2s ease;
   }
   
   .product-image img {
@@ -28,8 +28,8 @@
   .product-image {
     text-align: center;
     height: 100%;
-    pointer-events: none;
-    transition: transform 0.4s ease;
+    cursor: pointer;
+    transition: transform 0.2s ease;
   }
   
   .product-content {
@@ -39,10 +39,11 @@
     padding: 15px;
     display: flex;
     flex-direction: column;
-    transition: transform 0.4s ease;
+    transition: transform 0.2s ease;
   }
 
   .product-content h3{
+    cursor: pointer;
     font-weight: 500;
   }
 
@@ -57,7 +58,6 @@
   .product:hover,
   .brand-logo:hover {
     border: var(--secondary-color) 2px solid;
-    cursor: pointer;
     box-shadow: 22px 24px 29px -25px rgba(0, 0, 0, 0.35);
   }
   
@@ -69,25 +69,38 @@
     transform: scale(1.05);
   }
 
+  .product-tools{
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    gap: 10px;
+    align-items: center;
+  }
+
   .buy-btn {
     align-items: center;
     padding: 10px 15px;
-    background-color: var(--primary-color);
+    border: var(--primary-color) 1px solid;
+    background-color: #ffffff;
     border-radius: 8px;
-    border: none;
     cursor: pointer;
     transition: 400ms;
   }
   
   .buy-btn span{
-    color: white;
+    color: var(--primary-color);
     font-weight: 700;
     font-size: 1em;
     transition: 300ms;
   }
 
   .buy-btn:hover {
+    background-color: var(--primary-color);
     transform: scale(1.03);
+  }
+  
+  .buy-btn:hover span{
+    color: white;
   }
 
   .buy-btn:active{
@@ -98,4 +111,73 @@
     display: flex;
     flex-direction: row;
     gap: 5px;
+  }
+
+  .add-favorite input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .add-favorite {
+    display: block;
+    text-align: center;
+    text-align: -webkit-center;
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+    user-select: none;
+    transition: 100ms;
+  }
+  
+  .checkmark {
+    top: 0;
+    left: 0;
+    height: 1.5em;
+    width: 1.5em;
+    transition: 100ms;
+    animation: dislike_effect 400ms ease;
+  }
+  
+  .add-favorite input:checked ~ .checkmark path {
+    fill: var(--primary-color);
+    stroke-width: 0;
+  }
+  
+  .add-favorite input:checked ~ .checkmark {
+    animation: like_effect 400ms ease;
+  }
+  
+  .add-favorite:hover {
+    transform: scale(1.1);
+  }
+  
+  @keyframes like_effect {
+    0% {
+      transform: scale(0);
+    }
+  
+    50% {
+      transform: scale(1.2);
+    }
+  
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes dislike_effect {
+    0% {
+      transform: scale(0);
+    }
+  
+    50% {
+      transform: scale(1.2);
+    }
+  
+    100% {
+      transform: scale(1);
+    }
   }

@@ -9,8 +9,8 @@ import LoaderCard from '../components/LoaderCard/LoaderCard';
 
 const ads = [
     { image: "/panel-gallery1.png", alt: 'smartWatch1' },
-    { image: "/panel-gallery1.png", alt: 'smartWatch1' },
-    { image: "/panel-gallery1.png", alt: 'smartWatch1' }
+    { image: "/panel-gallery2.png", alt: 'Xiaomi' },
+    { image: "/panel-gallery3.png", alt: 'Samsung' }
 ];
 
 

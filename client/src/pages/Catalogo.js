@@ -30,7 +30,6 @@ const Catalogo = () => {
             <SectionLanding title={products.length} importantText={"productos"} />
           </header>
           <ProductsCatalog products={products} />
-          <LoaderCard/>
         </div>
       </main>
       <Footer />
