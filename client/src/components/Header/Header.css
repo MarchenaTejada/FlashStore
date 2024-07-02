@@ -190,8 +190,9 @@
     }
   
     .header-all header{
+      margin-top: 45px;
       background-color: #ffffff75;
-    backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
     }
   
     .checkbtn {
