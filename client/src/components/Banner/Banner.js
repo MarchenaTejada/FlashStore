@@ -5,7 +5,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 const GalleryPresentation = ({ ads }) => {
   return (
     <div className="gallery-presentation">
-      <Carousel showThumbs={false} showStatus={true} infiniteLoop={true} autoPlay={true} interval={5000}>
+      <Carousel showThumbs={false} showStatus={false} infiniteLoop={true} autoPlay={true} interval={5000}>
         {ads.map((ad, index) => (
           <div key={index}>
             <img src={ad.image} alt={ad.alt} />
