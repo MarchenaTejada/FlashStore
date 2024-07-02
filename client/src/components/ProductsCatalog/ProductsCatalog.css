@@ -1,4 +1,18 @@
 .container{
     height:auto;
-    width: 60%;
   }
+
+.body .main-products{
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-auto-flow: dense;
+  gap: 30px;
+}
+
+@media (max-width:768px) {
+  .body .main-products{
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    justify-items: center;
+  }
+}

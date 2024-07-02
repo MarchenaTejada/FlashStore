@@ -1,6 +1,5 @@
 
 .body {
-  font-family: var(--font-serif);
   margin: 0;
   padding: 0;
   margin-bottom: 280px;
@@ -132,7 +131,7 @@
     border-radius: 30px;
     width: clamp(400px, 90%, 900px);
     border-color: #f0f0f0;
-    background-color: #ffffff90;
+    background-color: #ffffff20;
     backdrop-filter: blur(12px);
     padding: 10px 0;
   }
@@ -154,7 +153,8 @@
     background-color: #e0f1f7;
     color: black;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 500;
+    font-size: 1.1em;
     border-radius: 20px;
   }
 
