@@ -8,7 +8,7 @@ const LoaderCard = () => {
             <div class="card_loader card_image"></div>
             <div class="card_loader card_title"></div>
             <div class="card_loader card_title min"></div>
-            <div class="card_loader card_title min-btn"></div>
+            <div class="card_loader card_title"></div>
         </div>
     );
 } 
