@@ -10,5 +10,7 @@
 html{
   min-height: 100%;
   position: relative;
+}
+*{
   font-family: var(--primary-font);
 }
