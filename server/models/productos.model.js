@@ -6,7 +6,7 @@ function obtenerProductos(callback) {
     FROM Productos p 
     INNER JOIN Categorias ct on p.categoria_id = ct.categoria_id 
     INNER JOIN Especificaciones esp on p.especificacion_id = esp.especificacion_id
-    ORDER BY (p.producto_id)`;
+    ORDER BY (p.nombre)`;
     connection.query(consulta1, (err, results) => {
       connection.end();
       if (err) {

@@ -23,13 +23,19 @@
     user-select: none;
     padding: 5px 0;
     height: 230px;
+    max-width: 90%;
+    object-fit: contain;
   }
   
   .product-image {
+    display: flex;
+    justify-content: center;
     text-align: center;
     height: 100%;
     cursor: pointer;
     transition: transform 0.2s ease;
+    overflow: hidden;
+
   }
   
   .product-content {

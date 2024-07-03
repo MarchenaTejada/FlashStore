@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
 import ProductDescription from '../components/ProductDescription/ProductDescription';
 import LoaderPage from '../components/LoaderPage/LoaderPage';
 
@@ -32,14 +30,13 @@ const ProductPage = () => {
 };
 
 const Catalogo = ({ product }) => {
+  useEffect(() =>{
+    document.title= product.nombre
+  }, [product]); 
   return (
-    <div className='body'>
-      <Header />
       <main className='main'>
         <ProductDescription product={product} />
       </main>
-      <Footer />
-    </div>
   );
 }
 

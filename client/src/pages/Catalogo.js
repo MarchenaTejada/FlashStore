@@ -1,39 +1,56 @@
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
+import React, { useState, useEffect } from 'react';
 import SectionLanding from '../components/SectionLanding/SectionLanding';
-import Filter from '../components/Filter-products/Filter.js';
-import ProductsCatalog from '../components/ProductsCatalog/ProductsCatalog.js';
+import Filter from '../components/Filter-products/Filter';
+import ProductsCatalog from '../components/ProductsCatalog/ProductsCatalog';
 import '../components/ProductsCatalog/ProductsCatalog.css';
-import { useState, useEffect } from 'react';
-import LoaderPage from '../components/LoaderPage/LoaderPage.jsx';
-import LoaderCard from '../components/LoaderCard/LoaderCard.jsx';
+import LoaderPage from '../components/LoaderPage/LoaderPage';
 
-const Catalogo = () => {
+const Catalogo = ({ category, title = 'Todos los productos' }) => {
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8000/productos')
-      .then(response => response.json())
-      .then(data => setProducts(data))
-      .catch(error => console.error('Error fetching products:', error));
+    document.title = title;
+  }, [title]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/productos');
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
   }, []);
-  if (products.length === 0) {
+
+  // Filter products based on the category prop
+  useEffect(() => {
+    if (category) {
+      setFilteredProducts(products.filter(product => product.categoria_id === parseInt(category, 10)));
+    } else {
+      setFilteredProducts(products);
+    }
+  }, [category, products]);
+
+  // Show loader if products are still being fetched
+  if (filteredProducts.length === 0 && products.length === 0) {
     return <LoaderPage />;
   }
+
   return (
-    <div className='body'>
-      <Header />
-      <main className='main-products'>
-        <Filter />
-        <div class="container">
-          <header>
-            <SectionLanding title={products.length} importantText={"productos"} />
-          </header>
-          <ProductsCatalog products={products} />
-        </div>
-      </main>
-      <Footer />
-    </div>
+    <main className='main-products'>
+      <Filter />
+      <div className="container">
+        <header>
+          <SectionLanding title={filteredProducts.length} importantText="productos" />
+        </header>
+        <ProductsCatalog products={filteredProducts} />
+      </div>
+    </main>
   );
 }
 
