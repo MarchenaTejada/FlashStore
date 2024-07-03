@@ -8,6 +8,7 @@ import LoaderPage from '../components/LoaderPage/LoaderPage';
 const Catalogo = ({ category, title = 'Todos los productos' }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     document.title = title;
@@ -17,17 +18,19 @@ const Catalogo = ({ category, title = 'Todos los productos' }) => {
     const fetchProducts = async () => {
       try {
         const response = await fetch('http://localhost:8000/productos');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
         const data = await response.json();
         setProducts(data);
       } catch (error) {
-        console.error('Error fetching products:', error);
+        setError('No se han encontrado productos. Por favor, intente más tarde.');
       }
     };
 
     fetchProducts();
   }, []);
 
-  // Filter products based on the category prop
   useEffect(() => {
     if (category) {
       setFilteredProducts(products.filter(product => product.categoria_id === parseInt(category, 10)));
@@ -36,7 +39,10 @@ const Catalogo = ({ category, title = 'Todos los productos' }) => {
     }
   }, [category, products]);
 
-  // Show loader if products are still being fetched
+  if (error) {
+    return <div className="main error-message"><img src='/img/error.png'></img>{error}</div>;
+  }
+
   if (filteredProducts.length === 0 && products.length === 0) {
     return <LoaderPage />;
   }
