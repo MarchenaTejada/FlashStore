@@ -31,14 +31,17 @@ const LoginRegister = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setRegisterData({
-            ...registerData,
-            [name]: value
-        });
-        setLoginData({
-            ...loginData,
-            [name]: value
-        });
+        if (action === ' activeLogin') {
+            setRegisterData({
+                ...registerData,
+                [name]: value
+            });
+        } else {
+            setLoginData({
+                ...loginData,
+                [name]: value
+            });
+        }
     };
 
     const handleLoginSubmit = (e) => {
@@ -46,6 +49,7 @@ const LoginRegister = () => {
         fetch('http://localhost:8000/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
+            credentials: 'include', // Importante para enviar cookies
             body: JSON.stringify({
                 email: loginData.username,
                 password: loginData.password
@@ -56,7 +60,9 @@ const LoginRegister = () => {
                 if (data.error) {
                     setError(data.error);
                 } else {
-                    login(data.user, navigate); // Incluye la función de navegación
+                    console.log('Datos recibidos:', data); // Añade esta línea para depurar
+                    login(data.usuario_id, data.token);
+                    navigate('/home');
                 }
             })
             .catch(err => setError(err.message));
@@ -64,9 +70,10 @@ const LoginRegister = () => {
 
     const handleRegisterSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:8000/register', {
+        fetch('http://localhost:8000/registro', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
+            credentials: 'include', // Importante para enviar cookies
             body: JSON.stringify({
                 password: registerData.password,
                 email: registerData.email,
@@ -76,14 +83,7 @@ const LoginRegister = () => {
                 telefono: registerData.telefono
             })
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    setError(data.error);
-                } else {
-                    login(data.user, navigate); // Incluye la función de navegación
-                }
-            })
+            
             .catch(err => setError(err.message));
     };
 

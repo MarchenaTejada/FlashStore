@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const secretKey = 'your-secret-key'; 
+const secretKey = 'your-secret-key'; // Asegúrate de usar la misma clave en todo el proyecto
 
 function generateToken(usuario_id) {
   const payload = { usuario_id };
@@ -7,7 +7,6 @@ function generateToken(usuario_id) {
 }
 
 function verifyToken(token, callback) {
-  console.log(token);
   jwt.verify(token, secretKey, (err, decoded) => {
     if (err) {
       callback(err);

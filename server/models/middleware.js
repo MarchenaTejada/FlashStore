@@ -1,7 +1,7 @@
 const { verifyToken } = require('./jwt.js');
 
 function authenticateMiddleware(req, res, next) {
-  const token = req.headers['authorization'];
+  const token = req.cookies.token;
 
   if (!token) {
     return res.status(403).send({ message: 'No token provided.' });
@@ -10,7 +10,7 @@ function authenticateMiddleware(req, res, next) {
   verifyToken(token, (err, decoded) => {
     if (err) {
       console.log(err);
-      return res.status(500).send({ message: 'Fallo critico loco.' });
+      return res.status(500).send({ message: 'Failed to authenticate token.' });
     }
 
     req.usuario_id = decoded.usuario_id;

@@ -1,10 +1,11 @@
 import React, { useEffect, useContext } from 'react';
 import './Header.css';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
 const Header = () => {
     const { user, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -22,6 +23,11 @@ const Header = () => {
         };
     }, []);
 
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
+    };
+
     return (
         <div className="header-all">
             <div className="header-top">
@@ -37,7 +43,7 @@ const Header = () => {
                         <label htmlFor="check" className="checkbtn">
                             <i className="fa-solid fa-bars"></i>
                         </label>
-                        <Link className='imgLogo' to={'/Home'}><img src='/logo.png'></img></Link>
+                        <Link className='imgLogo' to={'/Home'}><img src='/logo.png' alt="Logo" /></Link>
                     </h1>
                     <form action="#" method="get">
                         <div className="search-container">
@@ -49,10 +55,10 @@ const Header = () => {
                     </form>
                     <div className="actions">
                         {user ? (
-                            <>
+                            <div className="user-actions">
                                 <span>{user.nombre}</span>
-                                <button onClick={logout}>Cerrar Sesión</button>
-                            </>
+                                <div className="logout-link" onClick={handleLogout}>Cerrar Sesión</div>
+                            </div>
                         ) : (
                             <Link to="/login"><i className="fa-solid fa-user"></i> Iniciar Sesión</Link>
                         )}
