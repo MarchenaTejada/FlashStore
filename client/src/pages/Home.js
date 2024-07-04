@@ -22,7 +22,7 @@ const Home = () => {
     useEffect(() => {
         fetch('http://localhost:8000/productos')
             .then(response => response.json())
-            .then(data => setProducts(data.filter(product => product.categoria_id == 1).slice(9, 13)))
+            .then(data => setProducts(data.filter(product => product.categoria_id === 1).slice(9, 13)))
             .catch(error => console.error('Error fetching products:', error));
     }, []);
 

@@ -1,10 +1,10 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Outlet, useParams } from 'react-router-dom';
 import Login from './pages/Login.js';
 import Home from './pages/Home.js';
 import Catalogo from './pages/Catalogo.js';
 import Detalle from './pages/Detalle.js';
+import NotFound from './pages/Page404.js';
 import Layout from './components/Layout/Layout.jsx'
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
             <Route path="accesorios" element={<Catalogo category={4} title='Accesorios' />} />
           </Route> 
         </Route>
-
+        <Route path="*" element={<NotFound />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>

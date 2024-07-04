@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Filter.css'
+import './Filter.css';
 
 const Filter = () => {
   const [filters, setFilters] = useState({
@@ -10,14 +10,20 @@ const Filter = () => {
     os: '',
     generacion: ''
   });
+  
+  const [expanded, setExpanded] = useState(null);
 
   const handleFilterChange = (filterType, value) => {
     setFilters({ ...filters, [filterType]: value });
   };
 
+  const handleToggleExpand = (id) => {
+    setExpanded(expanded === id ? null : id);
+  };
+
   const filterOptions = [
     { id: 'marca', label: 'Marca', values: ['Apple', 'Samsung', 'Huawei', 'Xiaomi'] },
-    { id: 'precio', label: 'Precio', values: ['$300', '$300-$600', '$600-$1000', '$1000'] },
+    { id: 'precio', label: 'Precio', values: ['S/ 0 - S/ 300', 'S/ 300 - S/ 600', 'S/ 600 - S/ 1000', 'Mayor a S/ 1000'] },
     { id: 'tamano', label: 'Tamaño de pantalla', values: ['5.0"', '5.0" - 6.0"', '6.0"'] },
     { id: 'ram', label: 'Memoria Ram', values: ['4GB', '4GB - 8GB', '8GB'] },
     { id: 'os', label: 'Sistema Operativo', values: ['Android', 'iOS', 'Windows'] },
@@ -26,31 +32,29 @@ const Filter = () => {
 
   return (
     <aside className="filter">
-        <button title="filtrar" class="filter-icon">
-        <svg viewBox="0 0 512 512" height="1em">
-          <path
-            d="M0 416c0 17.7 14.3 32 32 32l54.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 448c17.7 0 32-14.3 32-32s-14.3-32-32-32l-246.7 0c-12.3-28.3-40.5-48-73.3-48s-61 19.7-73.3 48L32 384c-17.7 0-32 14.3-32 32zm128 0a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM320 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm32-80c-32.8 0-61 19.7-73.3 48L32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l246.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48l54.7 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-54.7 0c-12.3-28.3-40.5-48-73.3-48zM192 128a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm73.3-64C253 35.7 224.8 16 192 16s-61 19.7-73.3 48L32 64C14.3 64 0 78.3 0 96s14.3 32 32 32l86.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 128c17.7 0 32-14.3 32-32s-14.3-32-32-32L265.3 64z"
-          ></path>
-        </svg>
-      </button>
       <div className="dropdown">
-        <div className="dropdown-title">Smartphone</div>
+        <div className="dropdown-title">Filtrar</div>
         <ul className="dropdown-content">
           {filterOptions.map(option => (
             <li key={option.id}>
-              <input
-                type="radio"
-                id={option.id}
-                name="item"
-                onChange={() => handleFilterChange(option.id, option.label)}
-                checked={filters[option.id] === option.label}
-              />
-              <label htmlFor={option.id}>{option.label}</label>
-              <ul className="submenu">
+              <button 
+                className="accordion-header" 
+                onClick={() => handleToggleExpand(option.id)}
+              >
+                {option.label}
+                <span className={`accordion-icon ${expanded === option.id ? 'expanded' : ''}`}>+</span>
+              </button>
+              <div className={`accordion-content ${expanded === option.id ? 'show' : ''}`}>
                 {option.values.map(value => (
-                  <li key={value}><a href="#">{value}</a></li>
+                  <div 
+                    key={value} 
+                    className={`filter-option ${filters[option.id] === value ? 'selected' : ''}`}
+                    onClick={() => handleFilterChange(option.id, value)}
+                  >
+                    <span className="filter-label">{value}</span>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </li>
           ))}
         </ul>
