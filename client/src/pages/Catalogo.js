@@ -1,39 +1,75 @@
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
+import React, { useState, useEffect } from 'react';
 import SectionLanding from '../components/SectionLanding/SectionLanding';
-import Filter from '../components/Filter-products/Filter.js';
-import ProductsCatalog from '../components/ProductsCatalog/ProductsCatalog.js';
+import Filter from '../components/Filter-products/Filter';
+import ProductsCatalog from '../components/ProductsCatalog/ProductsCatalog';
 import '../components/ProductsCatalog/ProductsCatalog.css';
-import { useState, useEffect } from 'react';
-import LoaderPage from '../components/LoaderPage/LoaderPage.jsx';
-import LoaderCard from '../components/LoaderCard/LoaderCard.jsx';
+import LoaderPage from '../components/LoaderPage/LoaderPage';
 
-const Catalogo = () => {
+const Catalogo = ({ category, title = 'Todos los productos' }) => {
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [activeFilters, setActiveFilters] = useState({});
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:8000/productos')
-      .then(response => response.json())
-      .then(data => setProducts(data))
-      .catch(error => console.error('Error fetching products:', error));
+    document.title = title;
+  }, [title]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/productos');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        setError('No se han encontrado productos. Por favor, intente más tarde.');
+      }
+    };
+
+    fetchProducts();
   }, []);
-  if (products.length === 0) {
+
+  useEffect(() => {
+    let filtered = products;
+
+    if (category) {
+      filtered = filtered.filter(product => product.categoria_id === parseInt(category, 10));
+    }
+
+    Object.entries(activeFilters).forEach(([key, values]) => {
+      if (values.length > 0) {
+        filtered = filtered.filter(product => values.includes(product[key]));
+      }
+    });
+
+    setFilteredProducts(filtered);
+  }, [category, products, activeFilters]);
+
+  const handleFilterChange = (filters) => {
+    setActiveFilters(filters);
+  };
+
+  if (error) {
+    return <div className="main error-message"><img src='/img/error.png' alt="Error" />{error}</div>;
+  }
+
+  if (filteredProducts.length === 0 && products.length === 0) {
     return <LoaderPage />;
   }
+
   return (
-    <div className='body'>
-      <Header />
-      <main className='main-products'>
-        <Filter />
-        <div class="container">
-          <header>
-            <SectionLanding title={products.length} importantText={"productos"} />
-          </header>
-          <ProductsCatalog products={products} />
-        </div>
-      </main>
-      <Footer />
-    </div>
+    <main className='main-products'>
+      <Filter onFilterChange={handleFilterChange} />
+      <div className="container">
+        <header>
+          <SectionLanding title={filteredProducts.length} importantText="productos" />
+        </header>
+        <ProductsCatalog products={filteredProducts} />
+      </div>
+    </main>
   );
 }
 

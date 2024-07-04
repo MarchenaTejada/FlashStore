@@ -1,9 +1,9 @@
 const express = require('express');
-const mysql = require('mysql');
 const cors = require('cors');
-const { obtenerProductos, obtenerProductoEspecifico } = require("./models/productos.model")
+const bodyParser = require('body-parser');
 const { registerUser, authenticateUser, obtenerUsuarios } = require("./models/autenticacion");
-
+const router = require("./routes/routes");
+const authenticateMiddleware = require('./models/middleware');
 const app = express();
 const PORT = process.env.PORT || 8000;
 
@@ -12,22 +12,9 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.use(bodyParser.json());
 
-const conexion = mysql.createConnection({
-  host: 'boefwtgj1nlcj5vcnbol-mysql.services.clever-cloud.com',
-  user: 'u5q5n7kztk7md1yu',
-  password: 'd4T0ZYMYEnv4Xo52cAzi',
-  database: 'boefwtgj1nlcj5vcnbol',
-  port: 3306
-});
-
-conexion.connect((err) => {
-  if (err) {
-    console.error('Error conectando a la base de datos: ', err);
-    return;
-  }
-  console.log('Conexión establecida con éxito.');
-});
+app.use('/', router);
 
 app.post('/registro', (req, res) => {
   const { password, email, nombre, apellido, direccion, telefono } = req.body;
@@ -41,31 +28,25 @@ app.post('/registro', (req, res) => {
   });
 });
 
-app.get('/productos', (req, res) => {
-  obtenerProductos((err, results) => {
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  authenticateUser(email, password, (err, authenticated, token) => {
     if (err) {
+      console.error('Error durante la autenticación:', err);
       res.status(500).send({ error: err.message });
+    } else if (!authenticated) {
+      res.status(401).send({ error: 'Credenciales incorrectas.' });
     } else {
-      res.send(results);
+      res.status(200).send({ token });
     }
   });
 });
-
-app.get('/producto/:id', (req, res) => {
-  const id = req.params.id;
-  obtenerProductoEspecifico(id, (err, results) => {
+app.get('/usuarios', authenticateMiddleware, (req, res) => {
+  const usuario_id = req.usuario_id;
+  obtenerUsuario(usuario_id, (err, results) => {
     if (err) {
-      res.status(500).send({ error: err.message });
-    } else {
-      res.send(results);
-    }
-  });
-});
-
-app.get('/usuarios', (req, res) => {
-  obtenerUsuarios((err, results) => {
-    if (err) {
-      res.status(500).send({ error: err.message });
+      console.error('Error obteniendo usuario:', err);
+      return res.status(500).send({ error: err.message });
     } else {
       res.send(results);
     }

@@ -1,14 +1,17 @@
-.section {
-    margin: 20px 0;
-  }
+
   
   .section header {
     display: flex;
     color: #666666;
     justify-content: space-between;
   }
+
+  .section header h2{
+    font-weight: 600;
+  }
   
   .important {
+    font-weight: 800;
     color: var(--primary-color);
   }
   
@@ -47,7 +50,7 @@
     position: relative;
     font-size: 18px;
     font-weight: 700;
-    color: #1e77bf;
+    color: var(--secondary-color);
   }
   
   .view-more svg {

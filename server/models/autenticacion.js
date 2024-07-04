@@ -1,5 +1,6 @@
 const { createConnection } = require('../database/database.js');
 const bcrypt = require('bcryptjs');
+const { generateToken } = require('./jwt.js');
 
 function registerUser(password, email, nombre, apellido, direccion, telefono, callback) {
   const connection = createConnection();
@@ -11,8 +12,8 @@ function registerUser(password, email, nombre, apellido, direccion, telefono, ca
       return;
     }
 
-    const cuentaQuery = 'INSERT INTO Cuentas (email, contraseña) VALUES (?, ?)';
     const usuarioQuery = 'INSERT INTO Usuarios (nombre, apellido, direccion, telefono) VALUES (?, ?, ?, ?)';
+    const cuentaQuery = 'INSERT INTO Cuentas (usuario_id, email, contraseña) VALUES (?, ?, ?)';
 
     connection.beginTransaction((err) => {
       if (err) {
@@ -21,7 +22,7 @@ function registerUser(password, email, nombre, apellido, direccion, telefono, ca
         return;
       }
 
-      connection.query(cuentaQuery, [email, hashedPassword], (err, cuentaResult) => {
+      connection.query(usuarioQuery, [nombre, apellido, direccion, telefono], (err, usuarioResult) => {
         if (err) {
           return connection.rollback(() => {
             connection.end();
@@ -29,9 +30,9 @@ function registerUser(password, email, nombre, apellido, direccion, telefono, ca
           });
         }
 
-        const usuario_id = cuentaResult.insertId;
+        const usuario_id = usuarioResult.insertId;
 
-        connection.query(usuarioQuery, [nombre, apellido, direccion, telefono], (err, usuarioResult) => {
+        connection.query(cuentaQuery, [usuario_id, email, hashedPassword], (err, cuentaResult) => {
           if (err) {
             return connection.rollback(() => {
               connection.end();
@@ -63,45 +64,53 @@ function authenticateUser(email, password, callback) {
   
   connection.query(query, [email], (err, results) => {
     if (err) {
+      console.error('Error en la consulta:', err);
       callback(err);
       return;
     }
   
     if (results.length === 0) {
+      console.log('Usuario no encontrado.');
       callback(null, false);
       return;
     }
   
+    console.log('Resultados de la consulta:', results);
+  
     const { usuario_id, contraseña: hashedPassword } = results[0];
+    console.log('Usuario encontrado:', usuario_id);
   
     bcrypt.compare(password, hashedPassword, (err, passwordValida) => {
       if (err) {
+        console.error('Error en bcrypt.compare:', err);
         callback(err);
         return;
       }
   
       if (passwordValida) {
-        callback(null, true, usuario_id);
+        const token = generateToken(usuario_id);
+        console.log('Token generado:', token);
+        callback(null, true, token);
       } else {
+        console.log('Contraseña incorrecta.');
         callback(null, false);
       }
     });
   });
-  
+
   connection.end();
 }
 
-function obtenerUsuarios(callback) {
+function obtenerUsuario(usuario_id, callback) {
   const connection = createConnection();
   
-  const query = 'SELECT * FROM Usuarios';
+  const query = 'SELECT * FROM Usuarios WHERE usuario_id = ?';
 
-  connection.query(query, (err, results) => {
+  connection.query(query, [usuario_id], (err, results) => {
     if (err) {
       callback(err);
       return;
     }
-
     callback(null, results);
   });
 
@@ -111,5 +120,5 @@ function obtenerUsuarios(callback) {
 module.exports = {
   registerUser,
   authenticateUser,
-  obtenerUsuarios
+  obtenerUsuario
 };

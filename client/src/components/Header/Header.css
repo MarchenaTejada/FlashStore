@@ -96,11 +96,6 @@
     width: 110px;
   }
 
-  .header-main form {
-    text-align: center;
-    flex-grow: 1;
-    margin: 0 20px;
-  }
   .header-main input[type="text"] {
     background-color: #F3F9FB;
     width: 80%;
@@ -121,9 +116,38 @@
     text-decoration: none;
     color: #333;
   }
-  #search-input {
-    padding-left: 35px;
+
+  .search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
   }
+  
+  .search-input {
+    font-size: 1em;
+    border: 1px solid #d1d5db;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    width: 18rem;
+    transition: border-width 0.3s, width 0.3s;
+    outline: none;
+  }
+  
+  .search-input:focus {
+    border-width: 2px;
+    border-color: var(--primary-color);
+    width: 22rem;
+  }
+  
+  .search-icon {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #6b7280;
+  }  
+
   nav {
     margin: 10px auto;
     border-width: 1px;
@@ -141,7 +165,6 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    transition-duration: 0ms;
   }
   nav li {
     display: inline-block;
@@ -150,12 +173,13 @@
   nav a {
     display: block;
     padding: 10px 15px;
-    background-color: #e0f1f7;
-    color: black;
+    background-color: #e4f1ff;
+    color: rgb(78, 78, 78);
     text-decoration: none;
     font-weight: 500;
     font-size: 1.1em;
     border-radius: 20px;
+    transition: background-color 0.2s ease-in;
   }
 
   nav a:hover {
@@ -167,7 +191,7 @@
   .fa-location-dot,
   .fa-user,
   .fa-cart-shopping, .fa-search, .f {
-    color: #008ecc;
+    color: var(--primary-color);
   }
   .fa-search {
     position: absolute;
@@ -190,7 +214,6 @@
     }
   
     .header-all header{
-      margin-top: 45px;
       background-color: #ffffff75;
       backdrop-filter: blur(8px);
     }
@@ -213,6 +236,12 @@
       display: flex;
       align-items: center;
       width: 100%;
+    }
+
+    .search-input:focus {
+      border-width: 2px;
+      border-color: var(--primary-color);
+      width: 20rem;
     }
   
     nav{

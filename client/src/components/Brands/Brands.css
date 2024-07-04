@@ -1,0 +1,39 @@
+.brands-container {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 80px;
+      }
+
+.brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+}
+
+.brand-logo {
+        border: var(--primary-color);
+        background: #f5f5ff;
+        border-radius: 50%;
+        height: 140px;
+        width: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        transition: all 0.4s ease;
+}
+
+.brand-logo img {
+        user-select: none;
+        width: 50%;
+        transition: all 0.2s ease-in-out;
+}
+
+.brand-logo:hover img {
+        transform: scale(1.1);
+}
+
+.brand-logo:active {
+        transform: scale(0.9);
+}
