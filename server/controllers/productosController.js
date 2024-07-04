@@ -33,4 +33,4 @@ function handleUpdateImgProduct(req, res) {
     });
 }
 
-module.exports = { handleObtenerProductos, handleObtenerProductoEspecifico, handleUpdateImgProduct };
+module.exports = { handleObtenerProductos, handleObtenerProductoEspecifico, handleUpdateImgProduct};

@@ -19,9 +19,7 @@ const Catalogo = ({ category, title = 'Todos los productos' }) => {
     const fetchProducts = async () => {
       try {
         const response = await fetch('http://localhost:8000/productos');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+
         const data = await response.json();
         setProducts(data);
       } catch (error) {
