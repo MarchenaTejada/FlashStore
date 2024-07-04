@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 
 export const AuthContext = createContext();
 
@@ -6,22 +7,21 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        // Verificar si hay un token en el almacenamiento local
-        const storedUser = JSON.parse(localStorage.getItem('user'));
+        const storedUser = Cookies.get('user');
         if (storedUser) {
-            setUser(storedUser);
+            setUser(JSON.parse(storedUser));
         }
     }, []);
 
     const login = (userData, navigate) => {
         setUser(userData);
-        localStorage.setItem('user', JSON.stringify(userData));
-        navigate('/home');
+        Cookies.set('user', JSON.stringify(userData));
+        navigate('/home'); // Navega a Home después de iniciar sesión
     };
 
     const logout = (navigate) => {
         setUser(null);
-        localStorage.removeItem('user');
+        Cookies.remove('user');
         navigate('/login');
     };
 
@@ -31,4 +31,3 @@ export const AuthProvider = ({ children }) => {
         </AuthContext.Provider>
     );
 };
-

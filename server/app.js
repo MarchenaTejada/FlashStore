@@ -1,8 +1,10 @@
+// server/app.js
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
-const { obtenerProductos, obtenerProductoEspecifico } = require("./models/productos.model")
-const { registerUser, authenticateUser, obtenerUsuarios } = require("./models/autenticacion");
+const { obtenerProductos, obtenerProductoEspecifico } = require("./models/productos.model");
+const { registerUser, authenticateUser, obtenerUsuario } = require("./models/autenticacion");
+const authenticateMiddleware = require('./models/middleware');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -41,6 +43,20 @@ app.post('/registro', (req, res) => {
   });
 });
 
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  authenticateUser(email, password, (err, authenticated, token) => {
+    if (err) {
+      console.error('Error durante la autenticación:', err);
+      res.status(500).send({ error: err.message });
+    } else if (!authenticated) {
+      res.status(401).send({ error: 'Credenciales incorrectas.' });
+    } else {
+      res.status(200).send({ token });
+    }
+  });
+});
+
 app.get('/productos', (req, res) => {
   obtenerProductos((err, results) => {
     if (err) {
@@ -62,10 +78,12 @@ app.get('/producto/:id', (req, res) => {
   });
 });
 
-app.get('/usuarios', (req, res) => {
-  obtenerUsuarios((err, results) => {
+app.get('/usuarios', authenticateMiddleware, (req, res) => {
+  const usuario_id = req.usuario_id;
+  obtenerUsuario(usuario_id, (err, results) => {
     if (err) {
-      res.status(500).send({ error: err.message });
+      console.error('Error obteniendo usuario:', err);
+      return res.status(500).send({ error: err.message });
     } else {
       res.send(results);
     }

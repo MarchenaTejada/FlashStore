@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { FaUser, FaLock, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import './LoginRegister.css';
-import { AuthContext } from '../../context/AuthContext.js'; // Asegúrate de ajustar la ruta según tu estructura
+import { AuthContext } from '../../context/AuthContext.js';
 
 const LoginRegister = () => {
     const { login } = useContext(AuthContext);
@@ -56,7 +56,7 @@ const LoginRegister = () => {
                 if (data.error) {
                     setError(data.error);
                 } else {
-                    login(data.user); // Guarda el usuario en el contexto
+                    login(data.user, navigate); // Incluye la función de navegación
                 }
             })
             .catch(err => setError(err.message));
@@ -81,7 +81,7 @@ const LoginRegister = () => {
                 if (data.error) {
                     setError(data.error);
                 } else {
-                    login(data.user); // Guarda el usuario en el contexto
+                    login(data.user, navigate); // Incluye la función de navegación
                 }
             })
             .catch(err => setError(err.message));
