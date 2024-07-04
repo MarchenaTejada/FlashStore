@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const { registerUser, authenticateUser, obtenerUsuarios } = require("./models/autenticacion");
+const { registerUser, authenticateUser } = require("./models/autenticacion");
 const router = require("./routes/routes");
 const authenticateMiddleware = require('./models/middleware');
 const app = express();
@@ -30,14 +30,14 @@ app.post('/registro', (req, res) => {
 
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
-  authenticateUser(email, password, (err, authenticated, token) => {
+  authenticateUser(email, password, (err, authenticated, token, usuario_id) => {
     if (err) {
       console.error('Error durante la autenticación:', err);
       res.status(500).send({ error: err.message });
     } else if (!authenticated) {
       res.status(401).send({ error: 'Credenciales incorrectas.' });
     } else {
-      res.status(200).send({ token });
+      res.status(200).send({ usuario_id, token });
     }
   });
 });
