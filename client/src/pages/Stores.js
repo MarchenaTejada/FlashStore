@@ -18,7 +18,7 @@ const Catalogo = () => {
         address: 'Av. Garcilaso de la Vega N°. 1251 Tienda 159 Lima - Perú',
         phone: '(01) 510 1903',
         mobile: '998 184 096',
-        email: 'https://www.infotec.com.pe/img/cms/Tiendas/tda-1013.jpg',
+        email: 'robinanydelvalle@infotec.com.pe',
         imageUrl: 'https://www.infotec.com.pe/img/cms/Tiendas/tda-1013.jpg',
         hours: 'Lunes a Sábados 9:00 am a 7:00 pm'
       },
@@ -36,7 +36,7 @@ const Catalogo = () => {
         address: 'Av. Garcilaso de la Vega N°. 1251 Tienda 159 Lima - Perú',
         phone: '(01) 510 1903',
         mobile: '998 184 096',
-        email: 'https://www.infotec.com.pe/img/cms/Tiendas/tda-1013.jpg',
+        email: 'pamelastagnaro@infotec.com.pe',
         imageUrl: 'https://www.infotec.com.pe/img/cms/Tiendas/tda-1013.jpg',
         hours: 'Lunes a Sábados 9:00 am a 7:00 pm'
       },
