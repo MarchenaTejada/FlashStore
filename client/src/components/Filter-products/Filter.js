@@ -95,6 +95,7 @@ const Filter = ({ onFilterChange }) => {
                       type="checkbox"
                       id={`${option.id}-${value}`}
                       checked={filters[option.id].includes(value)}
+                      onClick={(e) => e.stopPropagation()}
                       onChange={() => handleFilterChange(option.id, value)}
                     />
                     <label htmlFor={`${option.id}-${value}`} className="filter-label">
