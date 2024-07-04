@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { FaUser, FaLock, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
+import Message from '../Message/Message';
 import './LoginRegister.css';
 
 const LoginRegister = () => {
     const [action, setAction] = useState('');
+    const [showMessage, setShowMessage] = useState(false);
     const [loginData, setLoginData] = useState({
         username: '',
         password: ''
@@ -79,11 +81,18 @@ const LoginRegister = () => {
                 if (data.error) {
                     setError(data.error);
                 } else {
-                    navigate('/home');
+                    setShowMessage(true);
+                    setTimeout(() => {
+                        setAction('');
+                    }, 1000);
+                    setTimeout(() => {
+                        setShowMessage(false);
+                    }, 4000);
                 }
             })
             .catch(err => setError(err.message));
-    };
+
+        };
 
     return (
         <>
@@ -156,6 +165,9 @@ const LoginRegister = () => {
                     </div>
                 </form>
             </div>
+        </div>
+        <div className={`message-container${showMessage ? ' show' : ''}`}>
+            <Message title={"Registrado"} message={"Inicie sesión ga"}/>
         </div>
         <Link to="/Home" className='buttonVolver'> <div className="arrow">&lt;</div> Volver a la página principal</Link>
         </>
