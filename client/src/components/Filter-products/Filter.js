@@ -89,7 +89,6 @@ const Filter = ({ onFilterChange }) => {
                   <div
                     key={value}
                     className="filter-option"
-                    onClick={() => handleFilterChange(option.id, value)}
                   >
                     <input
                       type="checkbox"

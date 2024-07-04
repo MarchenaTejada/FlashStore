@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 const ProductsCatalog = ({ products }) => {
   const navigate = useNavigate();
-  
   const handleProductClick = (product) => {
     navigate(`/product/${product.producto_id}`);
   };

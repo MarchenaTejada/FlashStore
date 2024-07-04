@@ -7,11 +7,11 @@ const ProductDescription = ({ product }) => {
 		const [quantity, setQuantity] = useState(1);
 	 
 		const handleIncrement = () => {
-		  setQuantity(prevQuantity => prevQuantity + 1);
+		  setQuantity(prevQuantity => Math.min(prevQuantity + 1, 10));
 		};
 	 
 		const handleDecrement = () => {
-		  setQuantity(prevQuantity => Math.max(prevQuantity - 1, 0)); 
+		  setQuantity(prevQuantity => Math.max(prevQuantity - 1, 1)); 
 		};
 	 
 	return (
