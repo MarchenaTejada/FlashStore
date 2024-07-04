@@ -1,6 +1,5 @@
 import React, { useState }from 'react';
 import './ProductDescription.css'
-import { SideBySideMagnifier } from 'react-image-magnifiers';
 import { FaCartShopping } from "react-icons/fa6";
 
 const ProductDescription = ({ product }) => {
@@ -19,15 +18,7 @@ const ProductDescription = ({ product }) => {
 		<div className='product-details'>
 			<h2>Información del producto</h2>
 			<div key={product.producto_id} className="product-item">
-				<SideBySideMagnifier
-					imageSrc={product.imagen}
-					largeImageSrc={product.imagen}
-					alwaysInPlace={true}
-					fillAvailableSpace={false}
-					fillAlignTop={false}
-					zoomContainerBorder="1px solid #ccc"
-					zoomContainerBoxShadow="0 4px 8px rgba(0,0,0,0.2)"
-				/>
+			<img src={product.imagen} alt={product.nombre} className="product-image"></img>
 				<section>
 					<h4>{product.marca}</h4>
 					<h3>{product.nombre}</h3>
