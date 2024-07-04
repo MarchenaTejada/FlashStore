@@ -26,7 +26,7 @@ const Header = () => {
                 <p>Bienvenido a Flash Store</p>
                 <ul>
                     <li><a href="https://wa.link/z9fg3q" target='_blank' rel='noreferrer'><i className="fa-solid fa-store"></i> Delivery 983 744 910 </a></li>
-                    <li><a href="#"><i className="fa-solid fa-location-dot"></i> Nuestras Tiendas </a></li>
+                    <li><Link to="/local"><i className="fa-solid fa-location-dot"></i> Nuestras Tiendas </Link></li>
                 </ul>
             </div>
             <header>
