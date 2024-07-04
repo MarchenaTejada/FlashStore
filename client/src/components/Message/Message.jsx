@@ -6,6 +6,7 @@ const Message = ({title, message}) => {
 	return (
 		<div class="card-message">
 			<div class="icon-container">
+				<FaCircleCheck />
 			</div>
 			<div class="message-text-container">
 				<p class="message-text">{title}</p>
