@@ -72,6 +72,16 @@ app.get('/usuarios', (req, res) => {
   });
 });
 
+app.get('/historialCompras', (req, res) => {
+  obtenerHistorialProductos((err, results) => {
+    if (err) {
+      res.status(500).send({ error: err.message });
+    } else {
+      res.send(results);
+    }
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Servidor iniciado en el puerto http://localhost:${PORT}/`);
 });
