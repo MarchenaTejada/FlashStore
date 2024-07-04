@@ -5,6 +5,7 @@ import Home from './pages/Home.js';
 import Catalogo from './pages/Catalogo.js';
 import Detalle from './pages/Detalle.js';
 import NotFound from './pages/Page404.js';
+import Stores from './pages/Stores.js';
 import Layout from './components/Layout/Layout.jsx'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/local" element={<Stores />} />
           <Route path="/product/:productId" element={<Detalle />} />
           <Route path="/catalogo">
             <Route index element={<Catalogo />} />
