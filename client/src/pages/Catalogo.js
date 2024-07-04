@@ -39,6 +39,7 @@ const Catalogo = ({ category, title = 'Todos los productos' }) => {
     }
   }, [category, products]);
 
+
   if (error) {
     return <div className="main error-message"><img src='/img/error.png'></img>{error}</div>;
   }

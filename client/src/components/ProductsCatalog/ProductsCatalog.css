@@ -20,6 +20,10 @@
   text-align: center;
 }
 
+.error-message img{
+  animation: shake 0.9s ease-in-out infinite;
+}
+
 @media (max-width:768px) {
   .body .main-products{
     grid-template-columns: 1fr;
