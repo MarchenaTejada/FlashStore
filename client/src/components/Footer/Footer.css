@@ -1,5 +1,5 @@
 footer {
-    background-color: #008ecc;
+    background-color: var(--primary-color);
     position: absolute;
     box-sizing: border-box;
     width: 100%;

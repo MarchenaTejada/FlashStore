@@ -8,6 +8,7 @@ import LoaderPage from '../components/LoaderPage/LoaderPage';
 const Catalogo = ({ category, title = 'Todos los productos' }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [activeFilters, setActiveFilters] = useState({});
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -32,16 +33,27 @@ const Catalogo = ({ category, title = 'Todos los productos' }) => {
   }, []);
 
   useEffect(() => {
-    if (category) {
-      setFilteredProducts(products.filter(product => product.categoria_id === parseInt(category, 10)));
-    } else {
-      setFilteredProducts(products);
-    }
-  }, [category, products]);
+    let filtered = products;
 
+    if (category) {
+      filtered = filtered.filter(product => product.categoria_id === parseInt(category, 10));
+    }
+
+    Object.entries(activeFilters).forEach(([key, values]) => {
+      if (values.length > 0) {
+        filtered = filtered.filter(product => values.includes(product[key]));
+      }
+    });
+
+    setFilteredProducts(filtered);
+  }, [category, products, activeFilters]);
+
+  const handleFilterChange = (filters) => {
+    setActiveFilters(filters);
+  };
 
   if (error) {
-    return <div className="main error-message"><img src='/img/error.png'></img>{error}</div>;
+    return <div className="main error-message"><img src='/img/error.png' alt="Error" />{error}</div>;
   }
 
   if (filteredProducts.length === 0 && products.length === 0) {
@@ -50,7 +62,7 @@ const Catalogo = ({ category, title = 'Todos los productos' }) => {
 
   return (
     <main className='main-products'>
-      <Filter />
+      <Filter onFilterChange={handleFilterChange} />
       <div className="container">
         <header>
           <SectionLanding title={filteredProducts.length} importantText="productos" />
