@@ -90,7 +90,7 @@ function authenticateUser(email, password, callback) {
       if (passwordValida) {
         const token = generateToken(usuario_id);
         console.log('Token generado:', token);
-        callback(null, true, token);
+        callback(null, true, token, usuario_id);
       } else {
         console.log('Contraseña incorrecta.');
         callback(null, false);
