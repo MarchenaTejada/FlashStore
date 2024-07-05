@@ -111,7 +111,7 @@ function obtenerUsuario(usuario_id, callback) {
       callback(err);
       return;
     }
-    callback(null, results);
+    callback(null, results[0]);
   });
 
   connection.end();

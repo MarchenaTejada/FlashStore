@@ -1,16 +1,23 @@
 import React from "react";
-import { FaCircleCheck, FaX } from "react-icons/fa6";
+import { FaCircleCheck, FaX, FaCircleXmark } from "react-icons/fa6";
 import './Message.css';
 
-const Message = ({title, message}) => {
+const Message = ({ title, message, message2, type }) => {
+
 	return (
-		<div class="card-message">
-			<div class="icon-container">
-				<FaCircleCheck />
+		<div className="card-message">
+			<div className="icon-container">
+				{type === "Success" &&
+					<FaCircleCheck />
+				}
+				{type === "Error" &&
+					<FaCircleXmark />
+				}
 			</div>
-			<div class="message-text-container">
-				<p class="message-text">{title}</p>
-				<p class="sub-text">{message}</p>
+			<div className="message-text-container">
+				<p className="message-text">{title}</p>
+				<p className="sub-text">{message}</p>
+				<p className="sub-text">{message2}</p>
 			</div>
 			<FaX />
 		</div>
