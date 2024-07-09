@@ -11,10 +11,9 @@ const AuthProvider = ({ children }) => {
         const checkSession = async () => {
             try {
                 const response = await axios.get('http://localhost:8000/usuario', { withCredentials: true });
-
-                if (response.data[0].usuario_id) {
+                if (response.data.usuario_id) {
                     setIsLoggedIn(true);
-                    setUserName(response.data[0].nombre);
+                    setUserName(response.data.nombre);
                 } else {
                     setIsLoggedIn(false);
                 }
