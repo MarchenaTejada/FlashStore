@@ -52,7 +52,7 @@ const Filter = ({ onFilterChange }) => {
     { id: 'precio', label: 'Precio', values: ['S/ 0 - S/ 300', 'S/ 300 - S/ 600', 'S/ 600 - S/ 1000', 'Mayor a S/ 1000'] },
     { id: 'tamano', label: 'Tamaño de pantalla', values: ['5.0"', '5.0" - 6.0"', '6.0"'] },
     { id: 'ram', label: 'Memoria Ram', values: ['4GB', '4GB - 8GB', '8GB'] },
-    { id: 'os', label: 'Sistema Operativo', values: ['Android', 'iOS', 'Windows'] },
+    { id: 'os', label: 'Sistema Operativo', values: ['Android', 'iOS', 'Fire Os'] },
     { id: 'generacion', label: 'Generación', values: ['1ra', '2da', '3ra', '4ta', '5ta'] }
   ];
 

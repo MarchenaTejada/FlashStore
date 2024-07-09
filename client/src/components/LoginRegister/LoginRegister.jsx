@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { FaUser, FaLock, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import Message from '../Message/Message';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 import './LoginRegister.css';
 
 const LoginRegister = () => {
@@ -41,58 +43,51 @@ const LoginRegister = () => {
         });
     };
 
+
     const handleLoginSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:8000/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                email: loginData.username,
-                password: loginData.password
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    setError(data.error);
-                } else {
-                    navigate('/home');
-                }
-            })
-            .catch(err => setError(err.message));
-    };
-
-    const handleRegisterSubmit = (e) => {
+        axios.post('http://localhost:8000/auth/login', {
+          email: loginData.username,
+          password: loginData.password
+        }, { withCredentials: true })
+          .then(response => {
+            const { data } = response;
+            if (data.error) {
+              setError(data.error);
+            } else {
+              Cookies.set('usuario_id', data.usuario_id);
+              
+              navigate('/home');
+            }
+          })
+          .catch(err => setError(err.message));
+      };
+    
+      const handleRegisterSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:8000/registro', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                password: registerData.password,
-                email: registerData.email,
-                apellido: registerData.apellido,
-                nombre: registerData.nombre,
-                direccion: null, 
-                telefono: registerData.telefono
-            })
+        axios.post('http://localhost:8000/auth/registro', {
+          nombre: registerData.nombre,
+          apellido: registerData.apellido,
+          email: registerData.email,
+          telefono: registerData.telefono,
+          password: registerData.password
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    setError(data.error);
-                } else {
-                    setShowMessage(true);
-                    setTimeout(() => {
-                        setAction('');
-                    }, 1000);
-                    setTimeout(() => {
-                        setShowMessage(false);
-                    }, 4000);
-                }
-            })
-            .catch(err => setError(err.message));
-
-        };
+          .then(response => {
+            const { data } = response;
+            if (data.error) {
+              setError(data.error);
+            } else {
+                setShowMessage(true);
+                setTimeout(() => {
+                    setAction('');
+                }, 1000);
+                setTimeout(() => {
+                    setShowMessage(false);
+                }, 4000);
+            }
+          })
+          .catch(err => setError(err.message));
+      };
 
     return (
         <>
@@ -167,7 +162,7 @@ const LoginRegister = () => {
             </div>
         </div>
         <div className={`message-container${showMessage ? ' show' : ''}`}>
-            <Message title={"Registrado"} message={"Inicie sesión ga"}/>
+            <Message title={"Registrado"} message={"¡Bienvenido a FlashStore!"} message2={"Inicie sesión para continuar"} type={"Success"}/>
         </div>
         <Link to="/Home" className='buttonVolver'> <div className="arrow">&lt;</div> Volver a la página principal</Link>
         </>
