@@ -1,18 +1,14 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../../contexts/AuthContext';
 import { Link, NavLink } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
     const { isLoggedIn, userName, logout } = useContext(AuthContext);
     const [isDropdownOpen, setDropdownOpen] = useState(false);
-    const toggleDropdown = () => {
-        setDropdownOpen(!isDropdownOpen);
-    };
 
     useEffect(() => {
         const handleScroll = () => {
-
             let headerTop = document.querySelector('.header-top');
             let headerAll = document.querySelector('.header-all');
             const isScrolled = window.scrollY > 40;
@@ -26,6 +22,10 @@ const Header = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+    const toggleDropdown = () => {
+        setDropdownOpen(!isDropdownOpen);
+    };
 
     return (
         <div className="header-all">

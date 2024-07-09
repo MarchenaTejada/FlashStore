@@ -1,8 +1,8 @@
 import React, { createContext, useState, useContext } from 'react';
 
-const ProductContext = createContext();
+const CartContext = createContext();
 
-export const ProductProvider = ({ children }) => {
+export const CartProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
 
   const addProduct = (producto_id, cantidad) => {
@@ -31,12 +31,12 @@ export const ProductProvider = ({ children }) => {
   };
 
   return (
-    <ProductContext.Provider value={{ products, addProduct, removeProduct, updateProductQuantity }}>
+    <CartContext.Provider value={{ products, addProduct, removeProduct, updateProductQuantity }}>
       {children}
-    </ProductContext.Provider>
+    </CartContext.Provider>
   );
 };
 
-export const useProductContext = () => {
-  return useContext(ProductContext);
+export const useCartContext = () => {
+  return useContext(CartContext);
 };

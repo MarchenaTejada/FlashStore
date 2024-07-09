@@ -1,7 +1,7 @@
-const { verifyToken } = require('./jwt.js');
+const { verifyToken } = require('../config/jwt');
 
 function authenticateMiddleware(req, res, next) {
-  const token = req.cookies.token; 
+  const token = req.cookies.token;
   
   if (!token) {
     return res.status(403).send({ message: 'No token provided.' });
@@ -9,10 +9,8 @@ function authenticateMiddleware(req, res, next) {
 
   verifyToken(token, (err, decoded) => {
     if (err) {
-      console.log(err);
-      return res.status(500).send({ message: 'Fallo crítico.' });
+      return res.status(500).send({ message: 'Failed to authenticate token.' });
     }
-    console.log("Middle: " + decoded.usuario_id);
     req.usuario_id = decoded.usuario_id;
     next();
   });

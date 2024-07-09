@@ -1,6 +1,6 @@
 const { createConnection } = require('../database/database.js');
 const bcrypt = require('bcryptjs');
-const { generateToken } = require('./jwt.js');
+const { generateToken } = require('../config/jwt');
 
 function registerUser(password, email, nombre, apellido, direccion, telefono, callback) {
   const connection = createConnection();

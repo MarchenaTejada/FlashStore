@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import axios from 'axios';
+import { AuthContext } from '../../contexts/AuthContext';
 import { FaUser, FaLock, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import Message from '../Message/Message';
-import axios from 'axios';
-import Cookies from 'js-cookie';
 import './LoginRegister.css';
 
 const LoginRegister = () => {
@@ -20,8 +20,9 @@ const LoginRegister = () => {
         telefono: '',
         password: ''
     });
-    const [error, setError] = useState(null);
+    const [localError, setLocalError] = useState(null);
     const navigate = useNavigate();
+    const { login, error, loading } = useContext(AuthContext);
 
     const registerLink = () => {
         setAction(' activeLogin');
@@ -43,39 +44,33 @@ const LoginRegister = () => {
         });
     };
 
-
-    const handleLoginSubmit = (e) => {
+    const handleLoginSubmit = async (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/auth/login', {
-          email: loginData.username,
-          password: loginData.password
-        }, { withCredentials: true })
-          .then(response => {
-            const { data } = response;
-            if (data.error) {
-              setError(data.error);
+        try {
+            await login(loginData.username, loginData.password);
+            if (!error) {
+                navigate('/home');
             } else {
-              Cookies.set('usuario_id', data.usuario_id);
-              
-              navigate('/home');
+                setLocalError(error);
             }
-          })
-          .catch(err => setError(err.message));
-      };
-    
-      const handleRegisterSubmit = (e) => {
+        } catch (err) {
+            setLocalError('Error en el inicio de sesión. Por favor, intente de nuevo.');
+        }
+    };
+
+    const handleRegisterSubmit = async (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/auth/registro', {
-          nombre: registerData.nombre,
-          apellido: registerData.apellido,
-          email: registerData.email,
-          telefono: registerData.telefono,
-          password: registerData.password
-        })
-          .then(response => {
+        try {
+            const response = await axios.post('/api/auth/registro', {
+                nombre: registerData.nombre,
+                apellido: registerData.apellido,
+                email: registerData.email,
+                telefono: registerData.telefono,
+                password: registerData.password
+            });
             const { data } = response;
             if (data.error) {
-              setError(data.error);
+                setLocalError(data.error);
             } else {
                 setShowMessage(true);
                 setTimeout(() => {
@@ -85,9 +80,10 @@ const LoginRegister = () => {
                     setShowMessage(false);
                 }, 4000);
             }
-          })
-          .catch(err => setError(err.message));
-      };
+        } catch (err) {
+            setLocalError(err.message);
+        }
+    };
 
     return (
         <>

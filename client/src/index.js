@@ -4,8 +4,8 @@ import './index.css';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop.jsx';
-import { AuthProvider } from './context/AuthContext';
-import { ProductProvider } from './context/ProductContext';
+import { AuthProvider } from './contexts/AuthContext';
+import { ProductProvider } from './contexts/ProductContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

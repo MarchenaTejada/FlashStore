@@ -5,11 +5,11 @@ import LoaderPage from '../components/LoaderPage/LoaderPage';
 
 const ProductPage = () => {
   const { productId } = useParams();
-  const [product, setProduct] = useState(null);
+  const [selectedProduct, setProduct] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/producto/${productId}`)
+    fetch(`http://localhost:8000/api/productos/producto/${productId}`)
       .then(response => response.json())
       .then(data => setProduct(data))
       .catch(error => {
@@ -22,20 +22,20 @@ const ProductPage = () => {
     return <div>Error: {error.message}</div>;
   }
 
-  if (!product) {
+  if (!selectedProduct) {
     return <LoaderPage/>;
   }
 
-  return <Catalogo product={product[0]} />;
+  return <Catalogo product={selectedProduct[0]} />;
 };
 
-const Catalogo = ({ product }) => {
+const Catalogo = ({ selectedProduct }) => {
   useEffect(() =>{
-    document.title= product.nombre
-  }, [product]); 
+    document.title= selectedProduct.nombre
+  }, [selectedProduct]); 
   return (
       <main className='main'>
-        <ProductDescription product={product} />
+        <ProductDescription product={selectedProduct} />
       </main>
   );
 }
