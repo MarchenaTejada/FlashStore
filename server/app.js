@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 
 app.use(cors({
-  origin: 'https://flashstoreweb.netlify.app',
+  origin: process.env.FRONTEND_URL,
   credentials: true
 }));
 
