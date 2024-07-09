@@ -9,7 +9,7 @@ const ProductPage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`https://web-flashstore-ux.onrender.com/producto/${productId}`)
+    fetch(`http://localhost:8000/producto/${productId}`)
       .then(response => response.json())
       .then(data => setProduct(data))
       .catch(error => {
