@@ -10,7 +10,7 @@ export const CartProvider = ({ children }) => {
       const existingProduct = prevProducts.find(product => product.producto_id === producto_id);
       if (existingProduct) {
         return prevProducts.map(product =>
-          product.producto_id === producto_id ? { ...product, cantidad: product.cantidad + cantidad } : product
+          product.producto_id === producto_id ? { ...product, cantidad: cantidad } : product
         );
       } else {
         return [...prevProducts, { producto_id, cantidad }];
