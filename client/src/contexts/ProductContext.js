@@ -13,7 +13,6 @@ export const ProductProvider = ({ children }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
 
-  // Fetch products on component mount
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -30,7 +29,6 @@ export const ProductProvider = ({ children }) => {
     fetchProducts();
   }, []);
 
-  // Filter products whenever products, activeFilters, or category changes
   useEffect(() => {
     let filtered = products;
 
@@ -47,23 +45,19 @@ export const ProductProvider = ({ children }) => {
     setFilteredProducts(filtered);
   }, [products, activeFilters, category]);
 
-  // Handle filter changes
   const handleFilterChange = useCallback((filters) => {
     setActiveFilters(filters);
   }, []);
 
-  // Update selected category
   const updateCategory = useCallback((newCategory) => {
     setCategory(newCategory);
   }, []);
 
-  // Reset filters and category
   const resetFiltersAndCategory = useCallback(() => {
     setCategory(null);
     setActiveFilters({});
   }, []);
 
-  // Fetch a single product by ID
   const getProduct = useCallback(async (productId) => {
     try {
       const response = await axios.get(`/api/productos/producto/${productId}`);
@@ -79,7 +73,6 @@ export const ProductProvider = ({ children }) => {
     setQuantity(prevQuantity => Math.min(prevQuantity + 1, 10));
   }, []);
 
-  // Decrement product quantity
   const decrementQuantity = useCallback(() => {
     setQuantity(prevQuantity => Math.max(prevQuantity - 1, 1));
   }, []);

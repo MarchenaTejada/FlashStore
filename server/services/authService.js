@@ -1,5 +1,4 @@
 const { registerUser, authenticateUser, obtenerUsuario } = require('../models/auth.model');
-const { generateToken } = require('../config/jwt');
 
 exports.registerUser = async (password, email, nombre, apellido, direccion, telefono) => {
   return new Promise((resolve, reject) => {

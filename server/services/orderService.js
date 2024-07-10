@@ -1,8 +1,8 @@
-const { getOrderHistoryFromDB } = require('../models/order.model');
+const { obtenerHistorialPedidos } = require('../models/order.model');
 
 exports.getOrderHistory = () => {
   return new Promise((resolve, reject) => {
-    getOrderHistoryFromDB((err, orders) => {
+    obtenerHistorialPedidos((err, orders) => {
       if (err) reject(err);
       else resolve(orders);
     });
