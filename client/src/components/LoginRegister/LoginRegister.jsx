@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import axios from 'axios';
+import { AuthContext } from '../../contexts/AuthContext';
 import { FaUser, FaLock, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import Message from '../Message/Message';
@@ -18,8 +20,9 @@ const LoginRegister = () => {
         telefono: '',
         password: ''
     });
-    const [error, setError] = useState(null);
+    const [localError, setLocalError] = useState(null);
     const navigate = useNavigate();
+    const { login, error, loading } = useContext(AuthContext);
 
     const registerLink = () => {
         setAction(' activeLogin');
@@ -41,58 +44,46 @@ const LoginRegister = () => {
         });
     };
 
-    const handleLoginSubmit = (e) => {
+    const handleLoginSubmit = async (e) => {
         e.preventDefault();
-        fetch('http://localhost:8000/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                email: loginData.username,
-                password: loginData.password
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    setError(data.error);
-                } else {
-                    navigate('/home');
-                }
-            })
-            .catch(err => setError(err.message));
+        try {
+            await login(loginData.username, loginData.password);
+            if (!error) {
+                navigate('/home');
+            } else {
+                setLocalError(error);
+            }
+        } catch (err) {
+            setLocalError('Error en el inicio de sesión. Por favor, intente de nuevo.');
+        }
     };
 
-    const handleRegisterSubmit = (e) => {
+    const handleRegisterSubmit = async (e) => {
         e.preventDefault();
-        fetch('http://localhost:8000/registro', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                password: registerData.password,
-                email: registerData.email,
-                apellido: registerData.apellido,
+        try {
+            const response = await axios.post('/api/auth/registro', {
                 nombre: registerData.nombre,
-                direccion: null, 
-                telefono: registerData.telefono
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    setError(data.error);
-                } else {
-                    setShowMessage(true);
-                    setTimeout(() => {
-                        setAction('');
-                    }, 1000);
-                    setTimeout(() => {
-                        setShowMessage(false);
-                    }, 4000);
-                }
-            })
-            .catch(err => setError(err.message));
-
-        };
+                apellido: registerData.apellido,
+                email: registerData.email,
+                telefono: registerData.telefono,
+                password: registerData.password
+            });
+            const { data } = response;
+            if (data.error) {
+                setLocalError(data.error);
+            } else {
+                setShowMessage(true);
+                setTimeout(() => {
+                    setAction('');
+                }, 1000);
+                setTimeout(() => {
+                    setShowMessage(false);
+                }, 4000);
+            }
+        } catch (err) {
+            setLocalError(err.message);
+        }
+    };
 
     return (
         <>
@@ -167,7 +158,7 @@ const LoginRegister = () => {
             </div>
         </div>
         <div className={`message-container${showMessage ? ' show' : ''}`}>
-            <Message title={"Registrado"} message={"Inicie sesión ga"}/>
+            <Message title={"Registrado"} message={"¡Bienvenido a FlashStore!"} message2={"Inicie sesión para continuar"} type={"Success"}/>
         </div>
         <Link to="/Home" className='buttonVolver'> <div className="arrow">&lt;</div> Volver a la página principal</Link>
         </>

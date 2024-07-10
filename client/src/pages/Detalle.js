@@ -1,43 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
+import { ProductContext } from './../contexts/ProductContext';
 import ProductDescription from '../components/ProductDescription/ProductDescription';
 import LoaderPage from '../components/LoaderPage/LoaderPage';
 
 const ProductPage = () => {
   const { productId } = useParams();
-  const [product, setProduct] = useState(null);
-  const [error, setError] = useState(null);
+  const { selectedProduct, getProduct, error, updateQuantity } = useContext(ProductContext);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/producto/${productId}`)
-      .then(response => response.json())
-      .then(data => setProduct(data))
-      .catch(error => {
-        console.error('Error fetching product:', error);
-        setError(error);
-      });
-  }, [productId]);
+    const fetchProduct = async () => {
+      await getProduct(productId);
+    };
+    updateQuantity();
+    fetchProduct();
+  }, [productId, getProduct]);
+
+  if (!selectedProduct || selectedProduct.producto_id != productId) {
+    return <LoaderPage />;
+  }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error}</div>;
   }
 
-  if (!product) {
-    return <LoaderPage/>;
-  }
-
-  return <Catalogo product={product[0]} />;
-};
-
-const Catalogo = ({ product }) => {
-  useEffect(() =>{
-    document.title= product.nombre
-  }, [product]); 
   return (
-      <main className='main'>
-        <ProductDescription product={product} />
-      </main>
+    <main className='main'>
+      <ProductDescription />
+    </main>
   );
-}
+};
 
 export default ProductPage;

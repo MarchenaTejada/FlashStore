@@ -1,6 +1,6 @@
 const { createConnection } = require('../database/database.js');
 const bcrypt = require('bcryptjs');
-const { generateToken } = require('./jwt.js');
+const { generateToken } = require('../config/jwt');
 
 function registerUser(password, email, nombre, apellido, direccion, telefono, callback) {
   const connection = createConnection();
@@ -90,7 +90,7 @@ function authenticateUser(email, password, callback) {
       if (passwordValida) {
         const token = generateToken(usuario_id);
         console.log('Token generado:', token);
-        callback(null, true, token);
+        callback(null, true, token, usuario_id);
       } else {
         console.log('Contraseña incorrecta.');
         callback(null, false);
@@ -111,7 +111,7 @@ function obtenerUsuario(usuario_id, callback) {
       callback(err);
       return;
     }
-    callback(null, results);
+    callback(null, results[0]);
   });
 
   connection.end();

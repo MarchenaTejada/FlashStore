@@ -1,58 +1,25 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const bodyParser = require('body-parser');
-const { registerUser, authenticateUser, obtenerUsuarios } = require("./models/autenticacion");
-const router = require("./routes/routes");
-const authenticateMiddleware = require('./models/middleware');
-const app = express();
-const PORT = process.env.PORT || 8000;
+const authRoutes = require('./routes/userRoutes');
+const productosRoutes = require('./routes/productRoutes');
+const pedidosRoutes = require('./routes/orderRoutes');
+const favoritosRoutes = require('./routes/favoritesRoutes');
 
+const app = express();
+app.use(express.json());
+app.use(cookieParser());
 app.use(cors({
-  origin: '*'
+  origin: 'http://localhost:3000',
+  credentials: true
 }));
 
-app.use(express.json());
-app.use(bodyParser.json());
+app.use('/api/auth', authRoutes);
+app.use('/api/productos', productosRoutes);
+app.use('/api/pedidos', pedidosRoutes);
+app.use('/api/favoritos', favoritosRoutes);
 
-app.use('/', router);
-
-app.post('/registro', (req, res) => {
-  const { password, email, nombre, apellido, direccion, telefono } = req.body;
-  registerUser(password, email, nombre, apellido, direccion, telefono, (err, userId) => {
-    if (err) {
-      console.error('Error durante el registro:', err);
-      res.status(500).send({ error: err.message });
-    } else {
-      res.status(200).send({ userId });
-    }
-  });
-});
-
-app.post('/login', (req, res) => {
-  const { email, password } = req.body;
-  authenticateUser(email, password, (err, authenticated, token) => {
-    if (err) {
-      console.error('Error durante la autenticación:', err);
-      res.status(500).send({ error: err.message });
-    } else if (!authenticated) {
-      res.status(401).send({ error: 'Credenciales incorrectas.' });
-    } else {
-      res.status(200).send({ token });
-    }
-  });
-});
-app.get('/usuarios', authenticateMiddleware, (req, res) => {
-  const usuario_id = req.usuario_id;
-  obtenerUsuario(usuario_id, (err, results) => {
-    if (err) {
-      console.error('Error obteniendo usuario:', err);
-      return res.status(500).send({ error: err.message });
-    } else {
-      res.send(results);
-    }
-  });
-});
-
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
-  console.log(`Servidor iniciado en el puerto http://localhost:${PORT}/`);
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
