@@ -1,6 +1,5 @@
-const { obtenerHistorialPedidos } = require('../models/order.model');
 
-const { crearPedido, agregarDetallePedido, obtenerPedidosUsuario } = require('../models/order.model');
+const { crearPedido, agregarDetallePedido, obtenerPedidosUsuario ,obtenerHistorialPedidos} = require('../models/order.model');
 
 function handleCrearPedido(req, res) {
     const { usuario_id, metodo_pago_id, total, detalles } = req.body;

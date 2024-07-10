@@ -4,10 +4,8 @@ const authMiddleware = require('../middleware/authMiddleware');
 const router = express.Router();
 
 router.post('/crear'/*, authMiddleware*/, pedidosController.handleCrearPedido);
+router.get('/historialCompras'/*, authMiddleware*/, pedidosController.handleObtenerHistorialPedidos);
 router.get('/:usuario_id'/*, authMiddleware*/, pedidosController.handleObtenerPedidosUsuario);
-router.get('/historialCompras', pedidosController.handleObtenerHistorialPedidos);
+
 
 module.exports = router;
-
-
-
