@@ -6,7 +6,7 @@ import LoaderPage from '../components/LoaderPage/LoaderPage';
 
 const ProductPage = () => {
   const { productId } = useParams();
-  const { selectedProduct, getProduct, loading, error } = useContext(ProductContext);
+  const { selectedProduct, getProduct, error } = useContext(ProductContext);
 
   useEffect(() => {
     const fetchProduct = async () => {

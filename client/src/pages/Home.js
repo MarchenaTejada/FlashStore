@@ -6,6 +6,7 @@ import SectionLanding from "../components/SectionLanding/SectionLanding";
 import LoaderCard from '../components/LoaderCard/LoaderCard';
 import BrandsContainer from '../components/Brands/BrandsContainer';
 import { ProductContext } from '../contexts/ProductContext';
+import { Button } from '@mui/material';
 
 const ads = [
     { image: "/panel-gallery1.png", alt: 'smartWatch1' },

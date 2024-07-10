@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -6,9 +7,11 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [showMessage, setShowMessage] = useState(false);
     const [userName, setUserName] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const checkSession = async () => {
@@ -28,8 +31,6 @@ const AuthProvider = ({ children }) => {
         };
 
         checkSession();
-        console.log('isLoggedIn:', isLoggedIn);
-    console.log('userName:', userName);
     }, []);
 
     const login = async (email, password) => {
@@ -51,7 +52,8 @@ const AuthProvider = ({ children }) => {
             await axios.post('/api/auth/logout', {}, { withCredentials: true });
             setIsLoggedIn(false);
             setUserName('');
-            Cookies.remove('usuario_id'); 
+            Cookies.remove('usuario_id');
+            navigate('/login');
         } catch (error) {
             setError('Error al cerrar sesión. Por favor, intente de nuevo.');
             console.error('Error al cerrar sesión:', error);

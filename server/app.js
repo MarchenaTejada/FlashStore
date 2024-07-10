@@ -18,6 +18,13 @@ app.use('/api/auth', authRoutes);
 app.use('/api/productos', productosRoutes);
 app.use('/api/pedidos', pedidosRoutes);
 app.use('/api/favoritos', favoritosRoutes);
+app.post('/prueba', (req, res) => {
+  const nombre = req.body.detalle[0].producto_id;
+  console.log('Objeto recibido:', req.body);
+
+  res.send(`Objeto recibido: ${nombre}`);
+});
+
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
