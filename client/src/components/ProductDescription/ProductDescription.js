@@ -1,10 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ProductContext } from '../../contexts/ProductContext';
+import { useCartContext } from '../../contexts/CartContext';
 import './ProductDescription.css';
 import { FaCartShopping } from "react-icons/fa6";
 
 const ProductDescription = () => {
     const { selectedProduct, quantity, incrementQuantity, decrementQuantity } = useContext(ProductContext);
+    const { products, addProduct } = useCartContext();
+    
+    const handleAddToCart = () => {
+        addProduct(selectedProduct.producto_id, quantity);
+    };
+
+    useEffect(() => {
+        console.log('Productos en el carrito:', products);
+    }, [products]);
 
     return (
         <div className='product-details'>
@@ -20,7 +30,7 @@ const ProductDescription = () => {
                         <input type="number" className="quantity-input" value={quantity} readOnly />
                         <button className="quantity-button increase" onClick={incrementQuantity}>+</button>
                     </div>
-                    <button className='add-to-car'> <FaCartShopping />Agregar al carrito</button>
+                    <button className='add-to-car' onClick={handleAddToCart}> <FaCartShopping />Agregar al carrito</button>
                 </section>
             </div>
             <h2>Especificaciones</h2>
