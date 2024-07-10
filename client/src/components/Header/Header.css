@@ -1,0 +1,352 @@
+
+.body {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 280px;
+  margin-top: 160px;
+}
+
+.body main {
+  padding: 2% 10%;
+}
+
+.active{
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.header-top {
+    background-color: #f8f8f8;
+    padding-left: 50px;
+    font-size: 14px;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    transition: all .2s;
+  }
+
+  .fixed {
+    transform:translateY(-45px);
+}
+  
+  .header-top ul {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  
+  .header-top p {
+    float: left;
+  }
+  .header-top a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #007bff;
+  }
+  .header-top li {
+    list-style: none;
+    display: block;
+    color: #008ecc;
+  }
+  .header-all header {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header-all {
+    width: 100%;
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    transition: all .2s;
+  }
+  
+  .header-main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  .header-main h1 {
+    display: flex;
+    margin: 0;
+    font-size: 24px;
+    color: #008ecc;
+  }
+  
+  .checkbtn {
+    font-size: 30px;
+    cursor: pointer;
+    display: none;
+  }
+  
+  #check {
+    display: none;
+  }
+  
+  .imgLogo{
+    display: block;
+    margin: 0 auto;
+  }
+
+  .imgLogo img{
+    width: 110px;
+  }
+
+  .header-main input[type="text"] {
+    background-color: #F3F9FB;
+    width: 80%;
+    padding: 12px 8px;
+    border: none;
+    outline:none;
+    border-radius: 10px;
+  }
+
+  .search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-input {
+    font-size: 1em;
+    border: 1px solid #d1d5db;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    width: 18rem;
+    transition: border-width 0.3s, width 0.3s;
+    outline: none;
+  }
+  
+  .search-input:focus {
+    border-width: 2px;
+    border-color: var(--primary-color);
+    width: 22rem;
+  }
+  
+  .search-icon {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #6b7280;
+  }  
+
+  nav {
+    margin: 10px auto;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 30px;
+    width: clamp(400px, 90%, 900px);
+    border-color: #f0f0f0;
+    background-color: #ffffff20;
+    backdrop-filter: blur(12px);
+    padding: 10px 0;
+  }
+  nav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  nav li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  nav a {
+    display: block;
+    padding: 10px 15px;
+    background-color: #e4f1ff;
+    color: rgb(78, 78, 78);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1em;
+    border-radius: 20px;
+    transition: background-color 0.2s ease-in;
+  }
+
+  nav a:hover {
+    background-color: var(--secondary-color);
+    color: #fff;
+  }
+  
+  .fa-store,
+  .fa-location-dot,
+  .fa-user,
+  .fa-cart-shopping, .fa-search, .f {
+    color: var(--primary-color);
+  }
+  .fa-search {
+    position: absolute;
+    transform: translate(10px, 11px);
+  }
+  .f {
+    position: absolute;
+    transform: translate(-25px, 11px);
+  }
+
+  
+@media (max-width: 952px) {
+    .header-top {
+      display: none;
+    }
+  
+    .header-top,
+    .header-main {
+      justify-content: center;
+    }
+  
+    .header-all header{
+      background-color: #ffffff75;
+      backdrop-filter: blur(8px);
+    }
+  
+    .checkbtn {
+      left: 0;
+      color: #008ecc;
+      display: contents;
+    }
+
+    .fa-bars{
+        padding-right: 15px;
+    }
+  
+    .header-main {
+      left: 0;
+    }
+  
+    .header-main h1{
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .search-input:focus {
+      border-width: 2px;
+      border-color: var(--primary-color);
+      width: 20rem;
+    }
+  
+    nav{
+      border-style: none;
+      background-color: rgba(255, 255, 255, 0);
+      backdrop-filter: none;
+      margin: 0;
+      padding: 0; 
+    }
+  
+    nav ul {
+      display: block;
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      background: var(--primary-color);
+      left: -100%;
+      text-align: center;
+      transition: all 0.5s;
+    }
+    nav ul li {
+      display: block;
+      margin: 10px 0;
+      line-height: 30px;
+    }
+    nav ul li a {
+      padding: 20px;
+      color: #fff;
+      background-color: var(--primary-color);
+      font-size: 20px;
+    }
+    li a:hover,
+    .active {
+      background: none;
+      border-radius: 0;
+      background-color: rgba(6, 109, 177, 0.647);
+    }
+    #check:checked ~ ul {
+      left: 0%;
+    }
+  
+    header h2{
+      font-size: 19px;
+    }
+  }
+  
+.user-icon {
+  background: #d9ebff;
+  border: none;
+  color: var(--primary-color);
+  font-weight:500;
+  padding: 15px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.actions-container {
+  position: relative;
+}
+
+.actions {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 8px;
+  padding: 10px;
+  width: 200px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.action-item,
+.action-button {
+  display: flex;
+  background-color: #ffffff00;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: var(--primary-color);
+  font-size: 14px;
+  transition: background 0.3s, color 0.3s;
+  margin-bottom: 8px;
+  cursor: pointer;
+  border: 0;
+}
+
+.action-item:hover,
+.action-button:hover {
+  background: #007bff;
+  color: #fff;
+}
+
+.action-item i,
+.action-button i {
+  margin-right: 8px;
+}
+
+.action-button {
+  background: transparent;
+  border: none;
+  color: #007bff;
+  font-size: 14px;
+  text-align: left;
+  width: 100%;
+}
+
+.action-button:hover {
+  background: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
