@@ -30,6 +30,7 @@ const AuthProvider = ({ children }) => {
         checkSession();
         console.log('isLoggedIn:', isLoggedIn);
     console.log('userName:', userName);
+    
     }, []);
 
     const login = async (email, password) => {

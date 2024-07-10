@@ -56,6 +56,7 @@ const LoginRegister = () => {
         } catch (err) {
             setLocalError('Error en el inicio de sesión. Por favor, intente de nuevo.');
         }
+        window.location.reload();
     };
 
     const handleRegisterSubmit = async (e) => {
