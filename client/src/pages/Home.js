@@ -1,5 +1,4 @@
 import React,{ useContext } from 'react';
-import React,{ useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductCard from '../components/ProductCard/ProductCard';
 import GalleryPresentation from '../components/Banner/Banner';
@@ -7,7 +6,6 @@ import SectionLanding from "../components/SectionLanding/SectionLanding";
 import LoaderCard from '../components/LoaderCard/LoaderCard';
 import BrandsContainer from '../components/Brands/BrandsContainer';
 import { ProductContext } from '../contexts/ProductContext';
-import { Button } from '@mui/material';
 
 const ads = [
     { image: "/panel-gallery1.png", alt: 'smartWatch1' },
@@ -17,30 +15,13 @@ const ads = [
 
 const Home = () => {
     const { products, loading } = useContext(ProductContext);
-    const { products, loading } = useContext(ProductContext);
     const navigate = useNavigate();
 
     const handleProductClick = (product) => {
         navigate(`/product/${product.producto_id}`);
     };
-    };
 
     return (
-        <main>
-            <GalleryPresentation ads={ads} />
-            <SectionLanding title="Lo mejor en" importantText="Smartphones" isVisible={true} link="/Catalogo" />
-            <div className="products-container">
-                {
-                    loading
-                        ? Array.from({ length: 4 }).map((_, index) => <LoaderCard key={index} />)
-                        : products.filter(product => product.categoria_id === 1).slice(4, 8).map(product => (
-                            <ProductCard key={product.producto_id} product={product} onClick={() => handleProductClick(product)} />
-                        ))
-                }
-            </div>
-            <SectionLanding title="Encuentra las mejores" importantText="Marcas" />
-            <BrandsContainer />
-        </main>
         <main>
             <GalleryPresentation ads={ads} />
             <SectionLanding title="Lo mejor en" importantText="Smartphones" isVisible={true} link="/Catalogo" />
