@@ -40,7 +40,6 @@ function handleObtenerPedidosUsuario(req, res) {
 
 function handleObtenerHistorialPedidos(req, res) {
     const usuario_id = req.query.usuario_id;
-    console.log("usuario_id");
     obtenerHistorialPedidos(usuario_id, (err, results) => {
         if (err) {
             res.status(500).send({ error: err.message });

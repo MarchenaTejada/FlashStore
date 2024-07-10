@@ -76,6 +76,10 @@ export const ProductProvider = ({ children }) => {
   const decrementQuantity = useCallback(() => {
     setQuantity(prevQuantity => Math.max(prevQuantity - 1, 1));
   }, []);
+  
+  const updateQuantity = useCallback(() => {
+    setQuantity(1);
+  }, []);
 
   return (
     <ProductContext.Provider value={{
@@ -91,7 +95,8 @@ export const ProductProvider = ({ children }) => {
       selectedProduct, 
       quantity, 
       incrementQuantity, 
-      decrementQuantity
+      decrementQuantity,
+      updateQuantity
     }}>
       {children}
     </ProductContext.Provider>
