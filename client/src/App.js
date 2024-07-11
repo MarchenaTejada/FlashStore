@@ -7,15 +7,21 @@ import Detalle from './pages/Detalle.js';
 import NotFound from './pages/Page404.js';
 import Stores from './pages/Stores.js';
 import Layout from './components/Layout/Layout.jsx'
+import FavoritesPage from './pages/Favorites.js';
+import Checkout from './pages/Checkout.js';
+import Historial from './pages/HistoryPurchase.js';
 
 function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home title='FlashStore'/>} />
+        <Route path="/home" element={<Home />} title='FlashStore'/>
         <Route path="/product/:productId" element={<Detalle />} />
         <Route path="/local" element={<Stores />} />
+        <Route path="/favoritos" element={<FavoritesPage />} />
+        <Route path="/historial" element={<Historial />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/catalogo">
           <Route index element={<Catalogo />} />
           <Route path="smartphones" element={<Catalogo category={1} title='Smartphones' />} />

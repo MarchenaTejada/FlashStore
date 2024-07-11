@@ -18,15 +18,15 @@ export const ProductProvider = ({ children }) => {
       try {
         const response = await axios.get('/api/productos/productos');
         setProducts(response.data);
+        setLoading(false);
       } catch (error) {
         setError('No se han encontrado productos. Por favor, intente más tarde.');
         console.error('Error fetching products:', error);
-      } finally {
-        setLoading(false);
-      }
+      } 
     };
 
     fetchProducts();
+    
   }, []);
 
   useEffect(() => {

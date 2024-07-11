@@ -22,7 +22,7 @@ const LoginRegister = () => {
     });
     const [localError, setLocalError] = useState(null);
     const navigate = useNavigate();
-    const { login, error, loading } = useContext(AuthContext);
+    const { login, error, loading, isLoggedIn } = useContext(AuthContext);
 
     const registerLink = () => {
         setAction(' activeLogin');
@@ -50,12 +50,15 @@ const LoginRegister = () => {
             await login(loginData.username, loginData.password);
             if (!error) {
                 navigate('/home');
+                window.location.reload();
             } else {
                 setLocalError(error);
+
             }
         } catch (err) {
             setLocalError('Error en el inicio de sesión. Por favor, intente de nuevo.');
         }
+        
     };
 
     const handleRegisterSubmit = async (e) => {
@@ -160,7 +163,7 @@ const LoginRegister = () => {
         <div className={`message-container${showMessage ? ' show' : ''}`}>
             <Message title={"Registrado"} message={"¡Bienvenido a FlashStore!"} message2={"Inicie sesión para continuar"} type={"Success"}/>
         </div>
-        <Link to="/Home" className='buttonVolver'> <div className="arrow">&lt;</div> Volver a la página principal</Link>
+        <Link to="/home" className='buttonVolver'> <div className="arrow">&lt;</div> Volver a la página principal</Link>
         </>
     )
 }
