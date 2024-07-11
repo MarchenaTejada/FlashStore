@@ -1,24 +1,37 @@
 import React, { useContext, useEffect } from 'react';
 import { ProductContext } from '../../contexts/ProductContext';
+import { useNavigate } from 'react-router-dom';
 import { useCartContext } from '../../contexts/CartContext';
 import './ProductDescription.css';
-import { FaCartShopping } from "react-icons/fa6";
+import { FaCartShopping, FaAngleLeft } from "react-icons/fa6";
 
 const ProductDescription = () => {
     const { selectedProduct, quantity, incrementQuantity, decrementQuantity } = useContext(ProductContext);
     const { products, addProduct } = useCartContext();
-    
+    const navigate = useNavigate();
+
     const handleAddToCart = () => {
-        addProduct(selectedProduct.producto_id, quantity);
+        addProduct(selectedProduct, quantity);
     };
 
     useEffect(() => {
         console.log('Productos en el carrito:', products);
     }, [products]);
 
+
+    const handleBackClick = () => {
+        navigate(-1);
+    };
+
+
     return (
         <div className='product-details'>
+            <div className='section-back-h2'> 
+            <button className='back-button' onClick={handleBackClick} >
+                <FaAngleLeft /> <span>Volver</span>
+            </button>
             <h2>Información del producto</h2>
+            </div>
             <div key={selectedProduct.producto_id} className="product-item">
                 <img src={selectedProduct.imagen} alt={selectedProduct.nombre} className="product-image" />
                 <section>

@@ -1,11 +1,15 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
+import { useCartContext } from '../../contexts/CartContext'; 
 import { Link, NavLink } from 'react-router-dom';
+import Cart from '../Cart/Cart';
 import './Header.css';
 
 const Header = () => {
     const { isLoggedIn, userName, logout } = useContext(AuthContext);
+    const { products } = useCartContext();
     const [isDropdownOpen, setDropdownOpen] = useState(false);
+    const [isCartOpen, setCartOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -26,6 +30,12 @@ const Header = () => {
     const toggleDropdown = () => {
         setDropdownOpen(!isDropdownOpen);
     };
+
+    const toggleCart = () => {
+        setCartOpen(!isCartOpen);
+    };
+    
+    const totalItems = products.reduce((acc, product) => acc + product.cantidad, 0);
 
     return (
         <div className="header-all">
@@ -52,6 +62,7 @@ const Header = () => {
                             </svg>
                         </div>
                     </form>
+                    <section className='user-bar'>
                     <div className="user-menu">
                         {isLoggedIn ? (
                             <div className="actions-container">
@@ -74,11 +85,22 @@ const Header = () => {
                             </div>
                         ) : (
                             <Link to="/login" className="action-item">
-                                <i className="fa-solid fa-user"></i> Iniciar Sesión
+                                Iniciar Sesión<i className="fa-solid fa-user"></i> 
                             </Link>
                         )}
                     </div>
-
+                    <div className="cart-menu">
+                        <button className="cart-icon" onClick={toggleCart}>
+                            Carrito
+                            <i className="fa-solid fa-shopping-cart"></i> {totalItems}
+                        </button>
+                        {isCartOpen && (
+                            <div className="cart-dropdown">
+                                <Cart />
+                            </div>
+                        )}
+                    </div>
+                    </section>
                 </div>
             </header>
             <nav>

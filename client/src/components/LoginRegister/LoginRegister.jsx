@@ -22,7 +22,7 @@ const LoginRegister = () => {
     });
     const [localError, setLocalError] = useState(null);
     const navigate = useNavigate();
-    const { login, error, loading } = useContext(AuthContext);
+    const { login, error, loading, isLoggedIn } = useContext(AuthContext);
 
     const registerLink = () => {
         setAction(' activeLogin');
@@ -50,12 +50,15 @@ const LoginRegister = () => {
             await login(loginData.username, loginData.password);
             if (!error) {
                 navigate('/home');
+                window.location.reload();
             } else {
                 setLocalError(error);
+
             }
         } catch (err) {
             setLocalError('Error en el inicio de sesión. Por favor, intente de nuevo.');
         }
+        
     };
 
     const handleRegisterSubmit = async (e) => {
