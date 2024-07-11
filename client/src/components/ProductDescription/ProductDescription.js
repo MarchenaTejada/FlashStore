@@ -15,7 +15,7 @@ const ProductDescription = () => {
     const handleAddToCart = () => {
         addProduct(selectedProduct, quantity);
         setShowNotification(true);
-        setTimeout(() => setShowNotification(false), 3000);
+        setTimeout(() => setShowNotification(false), 300000);
     };
 
     useEffect(() => {

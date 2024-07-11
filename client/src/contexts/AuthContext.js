@@ -7,9 +7,8 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [showMessage, setShowMessage] = useState(false);
     const [userName, setUserName] = useState('');
-    const [usuario_id, setUsuarioId] = useState(''); // Añadido estado para usuario_id
+    const [usuario_id, setUsuarioId] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
@@ -21,7 +20,7 @@ const AuthProvider = ({ children }) => {
                 if (response.data.usuario_id) {
                     setIsLoggedIn(true);
                     setUserName(response.data.nombre);
-                    setUsuarioId(response.data.usuario_id); // Actualizar usuario_id
+                    setUsuarioId(response.data.usuario_id);
                 } else {
                     setIsLoggedIn(false);
                 }

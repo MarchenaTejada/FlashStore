@@ -41,8 +41,13 @@ export const CartProvider = ({ children }) => {
     return Number(products.reduce((total, product) => total + (product.producto.precio * product.cantidad), 0).toFixed(2));
   };
 
+  const clearCart = () => {
+    setProducts([]);
+    localStorage.removeItem('cart');
+  };
+
   return (
-    <CartContext.Provider value={{ products, addProduct, removeProduct, updateProductQuantity, getTotal }}>
+    <CartContext.Provider value={{ products, addProduct, removeProduct, updateProductQuantity, getTotal, clearCart }}>
       {children}
     </CartContext.Provider>
   );
