@@ -44,7 +44,6 @@ function handleObtenerHistorialPedidos(req, res) {
         if (err) {
             res.status(500).send({ error: err.message });
         } else {
-            console.log(results)
             res.send(results);
         }
     });

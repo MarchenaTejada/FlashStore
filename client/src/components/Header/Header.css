@@ -310,6 +310,14 @@
     header h2 {
       font-size: 19px;
     }
+
+    .fixed {
+      transform: none;
+  }
+
+  .body{
+    margin-top: 180px;
+  }
 }
 
 .user-icon {
