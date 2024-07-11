@@ -23,7 +23,7 @@ const Checkout = () => {
       navigate('/home');
     }
     
-  }, [isLoggedIn, products, navigate]);
+  }, [isLoggedIn, products, navigate, loading]);
 
   const handleNextStep = () => {
     setStep(step + 1);

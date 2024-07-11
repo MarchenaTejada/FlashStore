@@ -27,6 +27,17 @@ const Header = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const handleResize = () => {
+        const mediaQuery = window.matchMedia('(max-width: 952px)');
+        setNavOpen(!mediaQuery.matches);
+    };
+
+    useEffect(() => {
+        handleResize(); // Check on initial load
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     const toggleDropdown = () => setDropdownOpen(prev => !prev);
     const toggleCart = () => setCartOpen(prev => !prev);
     const toggleNav = () => setNavOpen(prev => !prev);
