@@ -7,6 +7,7 @@ import ScrollToTop from './components/ScrollToTop/ScrollToTop.jsx';
 import { AuthProvider } from './contexts/AuthContext';
 import { ProductProvider } from './contexts/ProductContext';
 import { CartProvider } from './contexts/CartContext';
+import { FavoritesProvider } from './contexts/FavoritesContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,8 +16,10 @@ root.render(
       <AuthProvider>
         <ProductProvider>
           <CartProvider>
-            <ScrollToTop />
-            <App />
+            <FavoritesProvider>
+              <ScrollToTop />
+              <App />
+            </FavoritesProvider>
           </CartProvider>
         </ProductProvider>
       </AuthProvider>
