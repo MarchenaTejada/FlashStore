@@ -9,6 +9,7 @@ const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showMessage, setShowMessage] = useState(false);
     const [userName, setUserName] = useState('');
+    const [usuario_id, setUsuarioId] = useState(''); // Añadido estado para usuario_id
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
@@ -20,6 +21,7 @@ const AuthProvider = ({ children }) => {
                 if (response.data.usuario_id) {
                     setIsLoggedIn(true);
                     setUserName(response.data.nombre);
+                    setUsuarioId(response.data.usuario_id); // Actualizar usuario_id
                 } else {
                     setIsLoggedIn(false);
                 }
@@ -39,6 +41,7 @@ const AuthProvider = ({ children }) => {
             if (response.data.loggedIn) {
                 setIsLoggedIn(true);
                 setUserName(response.data.userName);
+                setUsuarioId(response.data.usuario_id);
                 Cookies.set('usuario_id', response.data.usuario_id);
             }
         } catch (error) {
@@ -52,6 +55,7 @@ const AuthProvider = ({ children }) => {
             await axios.post('/api/auth/logout', {}, { withCredentials: true });
             setIsLoggedIn(false);
             setUserName('');
+            setUsuarioId(''); // Limpiar usuario_id
             Cookies.remove('usuario_id');
             navigate('/login');
         } catch (error) {
@@ -61,7 +65,7 @@ const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, userName, login, logout, error, loading }}>
+        <AuthContext.Provider value={{ isLoggedIn, userName, usuario_id, login, logout, error, loading }}>
             {children}
         </AuthContext.Provider>
     );
