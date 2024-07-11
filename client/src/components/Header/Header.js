@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
-import { useCartContext } from '../../contexts/CartContext'; 
+import { useCartContext } from '../../contexts/CartContext';
 import { Link, NavLink } from 'react-router-dom';
 import Cart from '../Cart/Cart';
 import './Header.css';
@@ -10,7 +10,7 @@ const Header = () => {
     const { products } = useCartContext();
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const [isCartOpen, setCartOpen] = useState(false);
-    const [isNavOpen, setNavOpen] = useState(false);
+    const [isNavOpen, setNavOpen] = useState(true);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -30,7 +30,7 @@ const Header = () => {
     const toggleCart = () => setCartOpen(prev => !prev);
     const toggleNav = () => setNavOpen(prev => !prev);
     const closeNav = () => setNavOpen(false);
-    
+
     const totalItems = products.reduce((acc, product) => acc + product.cantidad, 0);
 
     return (
@@ -56,20 +56,21 @@ const Header = () => {
                         <label htmlFor="check" className="checkbtn" onClick={toggleNav}>
                             <i className="fa-solid fa-bars"></i>
                         </label>
+                        <button className="nav-toggle action-item" onClick={toggleNav}>
+                            <i className="fa-solid fa-bars"></i>
+                        </button>
                         <Link className='imgLogo' to='/home'>
                             <img src='/logo.png' alt="Logo" />
                         </Link>
                     </h1>
-                    <button className="nav-toggle action-item" onClick={toggleNav}>
-                        <i className="fa-solid fa-bars"></i> Categorías
-                    </button>
+
                     <form action="#" method="get">
                         <div className="search-container">
-                            <input 
-                                placeholder="Buscar" 
-                                className="search-input" 
-                                name="search" 
-                                type="search" 
+                            <input
+                                placeholder="Buscar"
+                                className="search-input"
+                                name="search"
+                                type="search"
                             />
                             <svg className="search-icon" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" fill="none">
                                 <path d="M21 21l-5.197-5.197A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607z" strokeLinejoin="round" strokeLinecap="round"></path>
@@ -85,7 +86,7 @@ const Header = () => {
                                     </button>
                                     {isDropdownOpen && (
                                         <div className="actions">
-                                            <Link to="/favorites" className="action-item">
+                                            <Link to="/favoritos" className="action-item">
                                                 <i className="fa-solid fa-heart"></i> Favoritos
                                             </Link>
                                             <Link to="/settings" className="action-item">
@@ -119,7 +120,7 @@ const Header = () => {
             <nav className={`nav-menu ${isNavOpen ? 'open' : ''}`}>
                 <input type="checkbox" id="check" />
                 <ul>
-                <li><NavLink to="/home" onClick={closeNav} className={({ isActive }) => isActive ? "active" : ""}>Inicio</NavLink></li>
+                    <li><NavLink to="/home" onClick={closeNav} className={({ isActive }) => isActive ? "active" : ""}>Inicio</NavLink></li>
                     <li><NavLink to="/catalogo" end onClick={closeNav} className={({ isActive }) => isActive ? "active" : ""}>Explorar</NavLink></li>
                     <li><NavLink to="/catalogo/smartphones" onClick={closeNav} className={({ isActive }) => isActive ? "active" : ""}>Smartphones</NavLink></li>
                     <li><NavLink to="/catalogo/smartwatches" onClick={closeNav} className={({ isActive }) => isActive ? "active" : ""}>Smartwatch</NavLink></li>

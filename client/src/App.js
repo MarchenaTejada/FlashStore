@@ -7,6 +7,7 @@ import Detalle from './pages/Detalle.js';
 import NotFound from './pages/Page404.js';
 import Stores from './pages/Stores.js';
 import Layout from './components/Layout/Layout.jsx'
+import FavoritesPage from './pages/Favorites.js';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/home" element={<Home />} title='FlashStore'/>
         <Route path="/product/:productId" element={<Detalle />} />
         <Route path="/local" element={<Stores />} />
+        <Route path="/favoritos" element={<FavoritesPage />} />
         <Route path="/catalogo">
           <Route index element={<Catalogo />} />
           <Route path="smartphones" element={<Catalogo category={1} title='Smartphones' />} />
