@@ -18,6 +18,8 @@ const ProductPage = () => {
 
   if (!selectedProduct || selectedProduct.producto_id != productId) {
     return <LoaderPage />;
+  }else{
+    document.title=`${selectedProduct.nombre}`;
   }
 
   if (error) {
