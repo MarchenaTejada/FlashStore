@@ -29,6 +29,7 @@ const Header = () => {
     const toggleDropdown = () => setDropdownOpen(prev => !prev);
     const toggleCart = () => setCartOpen(prev => !prev);
     const toggleNav = () => setNavOpen(prev => !prev);
+    const closeNav = () => setNavOpen(false);
     
     const totalItems = products.reduce((acc, product) => acc + product.cantidad, 0);
 
@@ -52,7 +53,7 @@ const Header = () => {
             <header>
                 <div className="header-main">
                     <h1>
-                        <label htmlFor="check" className="checkbtn">
+                        <label htmlFor="check" className="checkbtn" onClick={toggleNav}>
                             <i className="fa-solid fa-bars"></i>
                         </label>
                         <Link className='imgLogo' to='/home'>
@@ -118,12 +119,12 @@ const Header = () => {
             <nav className={`nav-menu ${isNavOpen ? 'open' : ''}`}>
                 <input type="checkbox" id="check" />
                 <ul>
-                    <li><NavLink to="/home" className={({ isActive }) => isActive ? "active" : ""}>Inicio</NavLink></li>
-                    <li><NavLink to="/catalogo" end className={({ isActive }) => isActive ? "active" : ""}>Explorar</NavLink></li>
-                    <li><NavLink to="/catalogo/smartphones" className={({ isActive }) => isActive ? "active" : ""}>Smartphones</NavLink></li>
-                    <li><NavLink to="/catalogo/smartwatches" className={({ isActive }) => isActive ? "active" : ""}>Smartwatch</NavLink></li>
-                    <li><NavLink to="/catalogo/tablets" className={({ isActive }) => isActive ? "active" : ""}>Tablets</NavLink></li>
-                    <li><NavLink to="/catalogo/accesorios" className={({ isActive }) => isActive ? "active" : ""}>Accesorios</NavLink></li>
+                <li><NavLink to="/home" onClick={closeNav} className={({ isActive }) => isActive ? "active" : ""}>Inicio</NavLink></li>
+                    <li><NavLink to="/catalogo" end onClick={closeNav} className={({ isActive }) => isActive ? "active" : ""}>Explorar</NavLink></li>
+                    <li><NavLink to="/catalogo/smartphones" onClick={closeNav} className={({ isActive }) => isActive ? "active" : ""}>Smartphones</NavLink></li>
+                    <li><NavLink to="/catalogo/smartwatches" onClick={closeNav} className={({ isActive }) => isActive ? "active" : ""}>Smartwatch</NavLink></li>
+                    <li><NavLink to="/catalogo/tablets" onClick={closeNav} className={({ isActive }) => isActive ? "active" : ""}>Tablets</NavLink></li>
+                    <li><NavLink to="/catalogo/accesorios" onClick={closeNav} className={({ isActive }) => isActive ? "active" : ""}>Accesorios</NavLink></li>
                 </ul>
             </nav>
         </div>

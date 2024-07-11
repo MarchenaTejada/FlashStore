@@ -30,6 +30,10 @@
     transform:translateY(-45px);
 }
   
+.header-main .nav-toggle{
+  display: flex;
+  gap: 15px;
+}
   .header-top ul {
     display: flex;
     flex-wrap: wrap;
@@ -199,7 +203,7 @@
   }
 
   
-@media (max-width: 952px) {
+  @media (max-width: 952px) {
     .header-top {
       display: none;
     }
@@ -209,7 +213,7 @@
       justify-content: center;
     }
   
-    .header-all header{
+    .header-all header {
       background-color: #ffffff75;
       backdrop-filter: blur(8px);
     }
@@ -220,7 +224,7 @@
       display: contents;
     }
 
-    .fa-bars{
+    .fa-bars {
         padding-right: 15px;
     }
   
@@ -228,7 +232,7 @@
       left: 0;
     }
   
-    .header-main h1{
+    .header-main h1 {
       display: flex;
       align-items: center;
       width: 100%;
@@ -240,60 +244,72 @@
       width: 20rem;
     }
 
-    .header-main .nav-toggle{
+    .header-main .nav-toggle {
       display: none;
     }
     
-    .nav-menu{
-      left: 0;
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
+    .nav-menu {
+      position: fixed;
+      left: -100%;
+      width: 100%;
+      height: 100vh;
+      background: var(--primary-color);
+      transition: all 0.3s ease-in-out; 
+      display: flex;
+      border-radius: 0;
+      align-items: center;
+      transform: none;
     }
 
-    nav{
+    .nav-menu.open {
+      transform: translateX(100%);
+    }
+
+    nav {
       border-style: none;
       background-color: rgba(255, 255, 255, 0);
       backdrop-filter: none;
       margin: 0;
-      padding: 0; 
+      padding: 0;
     }
   
     nav ul {
-      display: block;
-      position: absolute;
-      width: 100vw;
-      height: 100vh;
-      background: var(--primary-color);
-      transform: translateX(-100%);
-      text-align: center;
-      transition: all 0.5s;
+      justify-content: flex-start;
+      align-items: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
     }
+
     nav ul li {
-      display: block;
+      width: 80%;
+      text-align: center;
       margin: 10px 0;
       line-height: 30px;
     }
+
     nav ul li a {
       padding: 20px;
       color: #fff;
       background-color: var(--primary-color);
       font-size: 20px;
     }
+
     li a:hover,
     .active {
       background: none;
       border-radius: 0;
       background-color: rgba(6, 109, 177, 0.647);
     }
-    #check:checked ~ ul {
-      transform: translate(0);
-    }
-  
-    header h2{
+
+    header h2 {
       font-size: 19px;
     }
-  }
-  
+}
+
 .user-icon {
   background: #e6f2ff;
   border: none;
