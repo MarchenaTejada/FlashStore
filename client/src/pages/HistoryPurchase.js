@@ -8,9 +8,9 @@ const Historial = () => {
   });
   
   return (
-    <div >
+    <main >
       <PurchaseHistory/>
-    </div>
+    </main>
   );
 };
 

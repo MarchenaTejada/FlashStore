@@ -28,27 +28,24 @@ const PurchaseHistory = () => {
                 <thead>
                     <tr>
                         <th>Imagen</th>
-                        <th>Nombre</th>
-                        <th>Fecha Pedido</th>
                         <th>Nombre Producto</th>
+                        <th>Nombre Categoría</th>
+                        <th>Fecha Pedido</th>
                         <th>Cantidad</th>
                         <th>Precio Unitario</th>
                         <th>Total Producto</th>
-                        <th>Nombre Categoría</th>
                     </tr>
                 </thead>
                 <tbody>
                     {orders.map(order => (
                         <tr key={order.fecha_pedido + order.nombre_producto}>
-                            {/* <td data-label="Usuario ID">{order.usuario_id}</td> */}
                             <td data-label="Imagen"><img class = "ImagenChica" src={order.imagen} alt={order.nombre_producto} /></td>
-                            <td data-label="Nombre">{order.nombre}</td>
-                            <td data-label="Fecha Pedido">{new Date(order.fecha_pedido).toLocaleString()}</td>
                             <td data-label="Nombre Producto">{order.nombre_producto}</td>
+                            <td data-label="Nombre Categoría">{order.nombre_categoria}</td>
+                            <td data-label="Fecha Pedido">{new Date(order.fecha_pedido).toLocaleString()}</td>
                             <td data-label="Cantidad">{order.cantidad}</td>
                             <td data-label="Precio Unitario">${order.precio_unitario}</td>
                             <td data-label="Total Producto">${order.total_producto}</td>
-                            <td data-label="Nombre Categoría">{order.nombre_categoria}</td>
                         </tr>
                     ))}
                 </tbody>

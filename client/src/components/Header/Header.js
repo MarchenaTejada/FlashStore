@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useCartContext } from '../../contexts/CartContext';
+import { PiNotebookFill } from "react-icons/pi";
 import { Link, NavLink } from 'react-router-dom';
 import Cart from '../Cart/Cart';
 import './Header.css';
@@ -89,10 +90,13 @@ const Header = () => {
                                             <Link to="/favoritos" className="action-item">
                                                 <i className="fa-solid fa-heart"></i> Favoritos
                                             </Link>
+                                            <Link to="/historial" className="action-item">
+                                            <PiNotebookFill /> Historial de compras
+                                            </Link>
                                             <Link to="/settings" className="action-item">
                                                 <i className="fa-solid fa-cog"></i> Configuración
                                             </Link>
-                                            <button className="action-item" onClick={logout}>
+                                            <button className="action-item close-logout" onClick={logout}>
                                                 <i className="fa-solid fa-sign-out-alt"></i> Cerrar Sesión
                                             </button>
                                         </div>
