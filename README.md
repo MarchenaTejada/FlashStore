@@ -22,6 +22,17 @@ La primera corrección que se realizara será en relación con el siguiente prob
 
 El problema radica en el nivel de anidamiento de la función, que es excesivo. Por lo tanto, se realizará un ajuste para reducir el grado de anidamiento y mejorar su estructura.
 
+![code](https://github.com/user-attachments/assets/f44d86c1-75e3-4360-9a16-376c8a91340c)
+
+Para la primera corrección, se abordaron los problemas de anidamiento excesivo al encapsular las consultas a la base de datos y el manejo de los errores dentro de las promesas. Para esto se utilizó la clase "Error" para rechazar promesas, lo que permite proporcionar mensajes de erros más descriptivos y útiles para la depuración. Además, se hizo uso de "async/await" para simplificar la lógica de las funciones, mejorando así la legibilidad y el flujo del código.
+
+
+La segunda y tercera corrección también se deben a la misma razón; sin embargo, el problema se encuentra en otra sección del código.
+
+![image](https://github.com/user-attachments/assets/8cfad776-efe9-49d5-87a3-f9d331872999)
+
+![image](https://github.com/user-attachments/assets/3ce37434-5d2d-4b5a-94cd-1b4fae2c370a)
 
 
 
+![code](https://github.com/user-attachments/assets/18e9ef9c-891c-44ce-b26a-cf4e82faedfe)
