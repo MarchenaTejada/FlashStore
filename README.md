@@ -16,15 +16,19 @@ Para realizar las correcciones se priorizará según el grado de severidad. En e
 
 ## Correcciones
 
-La primera corrección que se realizara será en relación con el siguiente problema:
+La primera corrección que se realizara será en relación con un grado elevado de anidamiento y varios problemas menores relacionado con el mal uso de las promesas.
 
 ![image](https://github.com/user-attachments/assets/05a3c1ad-6839-47cf-a1ac-0a5f72735550)
 
-El problema radica en el nivel de anidamiento de la función, que es excesivo. Por lo tanto, se realizará un ajuste para reducir el grado de anidamiento y mejorar su estructura.
+![image](https://github.com/user-attachments/assets/b355fcf8-4404-4e86-8836-598ef46e2427)
+
+El codigo antes de la correccion se vera a continuacion:
+
+![code](https://github.com/user-attachments/assets/90d122b9-65a8-419e-814f-49265838b5be)
+
+Para la primera corrección, se abordaron los problemas de anidamiento excesivo al encapsular las consultas a la base de datos y el manejo de los errores dentro de las promesas. Para esto se utilizó la clase "Error" para rechazar promesas, lo que permite proporcionar mensajes de erros más descriptivos y útiles para la depuración. Además, se hizo uso de "async/await" para simplificar la lógica de las funciones, mejorando así la legibilidad y el flujo del código. Como resultado de la correccion tenemos:
 
 ![code](https://github.com/user-attachments/assets/f44d86c1-75e3-4360-9a16-376c8a91340c)
-
-Para la primera corrección, se abordaron los problemas de anidamiento excesivo al encapsular las consultas a la base de datos y el manejo de los errores dentro de las promesas. Para esto se utilizó la clase "Error" para rechazar promesas, lo que permite proporcionar mensajes de erros más descriptivos y útiles para la depuración. Además, se hizo uso de "async/await" para simplificar la lógica de las funciones, mejorando así la legibilidad y el flujo del código.
 
 
 La segunda y tercera corrección también se deben a la misma razón; sin embargo, el problema se encuentra en otra sección del código.
