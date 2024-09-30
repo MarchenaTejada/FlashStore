@@ -41,6 +41,10 @@ El codigo previo a las correciones es el siguiente:
 
 ![code](https://github.com/user-attachments/assets/8faf7a4e-7f7f-4e73-9846-7d410d04936d)
 
-En el segundo código, se consolidaron aún más las mejoras vistas en la primera correcion, esto al convertir todas las funciones en async, lo que permite eliminar la necesidad de los callbacks y facilita el manejo de errores. Se utilizó "try/catch" para controlar excepciones y se encapsularon todas las interacciones con la base de datos en promesas, asegurando una gestión más clara de los resultados y errores. También se agregó un cierre seguro de la conexión a la base de datos en un bloque finally, garantizando que los recursos se liberen correctamente independientemente de si se producen errores. Finalmente el codigo despues de hacer las correcciones nos quedaria asi: 
+En el segundo código, se convirtieron todas las funciones en async, lo que nos permite eliminar la necesidad de los callbacks y facilita el manejo de errores. Se utilizó "try/catch" para controlar excepciones y se encapsularon todas las interacciones con la base de datos en promesas, asegurando una gestión más clara de los resultados y errores. También se agregó un cierre seguro de la conexión a la base de datos en un bloque finally, garantizando que los recursos se liberen correctamente independientemente de si se producen errores. Finalmente el codigo despues de hacer las correcciones nos quedaria asi: 
 
 ![code](https://github.com/user-attachments/assets/18e9ef9c-891c-44ce-b26a-cf4e82faedfe)
+
+Finalmente al realiar nuevamente el analisis del SonarQube obtenemos los siguientes resultados:
+
+
