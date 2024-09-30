@@ -2,123 +2,120 @@ const { createConnection } = require('../database/database.js');
 const bcrypt = require('bcryptjs');
 const { generateToken } = require('../config/jwt');
 
-function registerUser(password, email, nombre, apellido, direccion, telefono, callback) {
-  const connection = createConnection();
-  const saltRounds = 5;
+async function registerUser(password, email, nombre, apellido, direccion, telefono) {
+    const connection = createConnection();
+    const saltRounds = 5;
 
-  bcrypt.hash(password, saltRounds, (err, hashedPassword) => {
-    if (err) {
-      callback(err);
-      return;
-    }
+    try {
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    const usuarioQuery = 'INSERT INTO Usuarios (nombre, apellido, direccion, telefono) VALUES (?, ?, ?, ?)';
-    const cuentaQuery = 'INSERT INTO Cuentas (usuario_id, email, contraseña) VALUES (?, ?, ?)';
+        const usuarioQuery = 'INSERT INTO Usuarios (nombre, apellido, direccion, telefono) VALUES (?, ?, ?, ?)';
+        const cuentaQuery = 'INSERT INTO Cuentas (usuario_id, email, contraseña) VALUES (?, ?, ?)';
 
-    connection.beginTransaction((err) => {
-      if (err) {
-        connection.end();
-        callback(err);
-        return;
-      }
+        await new Promise((resolve, reject) => {
+            connection.beginTransaction((err) => {
+                if (err) {
+                    return reject(new Error('Error al iniciar la transacción'));
+                }
+                resolve();
+            });
+        });
 
-      connection.query(usuarioQuery, [nombre, apellido, direccion, telefono], (err, usuarioResult) => {
-        if (err) {
-          return connection.rollback(() => {
-            connection.end();
-            callback(err);
-          });
-        }
+        const usuarioResult = await new Promise((resolve, reject) => {
+            connection.query(usuarioQuery, [nombre, apellido, direccion, telefono], (err, result) => {
+                if (err) return reject(new Error('Error al insertar el usuario: ' + err.message));
+                resolve(result);
+            });
+        });
 
         const usuario_id = usuarioResult.insertId;
 
-        connection.query(cuentaQuery, [usuario_id, email, hashedPassword], (err, cuentaResult) => {
-          if (err) {
-            return connection.rollback(() => {
-              connection.end();
-              callback(err);
+        await new Promise((resolve, reject) => {
+            connection.query(cuentaQuery, [usuario_id, email, hashedPassword], (err, result) => {
+                if (err) return reject(new Error('Error al insertar la cuenta: ' + err.message));
+                resolve(result);
             });
-          }
-
-          connection.commit((err) => {
-            if (err) {
-              return connection.rollback(() => {
-                connection.end();
-                callback(err);
-              });
-            }
-
-            connection.end();
-            callback(null, usuario_id);
-          });
         });
-      });
-    });
-  });
+
+        await new Promise((resolve, reject) => {
+            connection.commit((err) => {
+                if (err) return reject(new Error('Error al confirmar la transacción: ' + err.message));
+                resolve();
+            });
+        });
+
+        return usuario_id;
+    } catch (err) {
+        await new Promise((resolve, reject) => {
+            connection.rollback(() => {
+                connection.end();
+                reject(new Error('Error al registrar el usuario: ' + err.message));
+            });
+        });
+    } finally {
+        connection.end();
+    }
 }
 
-function authenticateUser(email, password, callback) {
-  const connection = createConnection();
-  
-  const query = 'SELECT usuario_id, email, contraseña FROM Cuentas WHERE email = ?';
-  
-  connection.query(query, [email], (err, results) => {
-    if (err) {
-      console.error('Error en la consulta:', err);
-      callback(err);
-      return;
-    }
-  
-    if (results.length === 0) {
-      console.log('Usuario no encontrado.');
-      callback(null, false);
-      return;
-    }
-  
-    console.log('Resultados de la consulta:', results);
-  
-    const { usuario_id, contraseña: hashedPassword } = results[0];
-    console.log('Usuario encontrado:', usuario_id);
-  
-    bcrypt.compare(password, hashedPassword, (err, passwordValida) => {
-      if (err) {
-        console.error('Error en bcrypt.compare:', err);
-        callback(err);
-        return;
-      }
-  
-      if (passwordValida) {
-        const token = generateToken(usuario_id);
-        console.log('Token generado:', token);
-        callback(null, true, token, usuario_id);
-      } else {
-        console.log('Contraseña incorrecta.');
-        callback(null, false);
-      }
-    });
-  });
+async function authenticateUser(email, password) {
+    const connection = createConnection();
 
-  connection.end();
+    const query = 'SELECT usuario_id, email, contraseña FROM Cuentas WHERE email = ?';
+    try {
+        const results = await new Promise((resolve, reject) => {
+            connection.query(query, [email], (err, result) => {
+                if (err) return reject(new Error('Error en la consulta: ' + err.message));
+                resolve(result);
+            });
+        });
+
+        if (results.length === 0) {
+            console.log('Usuario no encontrado.');
+            return { authenticated: false };
+        }
+
+        const { usuario_id, contraseña: hashedPassword } = results[0];
+        const passwordValida = await bcrypt.compare(password, hashedPassword);
+
+        if (passwordValida) {
+            const token = generateToken(usuario_id);
+            console.log('Token generado:', token);
+            return { authenticated: true, token, usuario_id };
+        } else {
+            console.log('Contraseña incorrecta.');
+            return { authenticated: false };
+        }
+    } catch (err) {
+        console.error('Error en la autenticación:', err);
+        throw new Error('Error en la autenticación: ' + err.message);
+    } finally {
+        connection.end();
+    }
 }
 
-function obtenerUsuario(usuario_id, callback) {
-  const connection = createConnection();
-  
-  const query = 'SELECT * FROM Usuarios WHERE usuario_id = ?';
+async function obtenerUsuario(usuario_id) {
+    const connection = createConnection();
 
-  connection.query(query, [usuario_id], (err, results) => {
-    if (err) {
-      callback(err);
-      return;
+    const query = 'SELECT * FROM Usuarios WHERE usuario_id = ?';
+    try {
+        const results = await new Promise((resolve, reject) => {
+            connection.query(query, [usuario_id], (err, result) => {
+                if (err) return reject(new Error('Error al obtener el usuario: ' + err.message));
+                resolve(result);
+            });
+        });
+
+        return results[0];
+    } catch (err) {
+        console.error('Error al obtener el usuario:', err);
+        throw new Error('Error al obtener el usuario: ' + err.message);
+    } finally {
+        connection.end();
     }
-    callback(null, results[0]);
-  });
-
-  connection.end();
 }
 
 module.exports = {
-  registerUser,
-  authenticateUser,
-  obtenerUsuario
+    registerUser,
+    authenticateUser,
+    obtenerUsuario
 };

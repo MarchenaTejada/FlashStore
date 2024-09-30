@@ -26,7 +26,6 @@ export const ProductProvider = ({ children }) => {
     };
 
     fetchProducts();
-    
   }, []);
 
   useEffect(() => {

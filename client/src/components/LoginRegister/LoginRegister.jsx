@@ -163,7 +163,7 @@ const LoginRegister = () => {
         <div className={`message-container${showMessage ? ' show' : ''}`}>
             <Message title={"Registrado"} message={"¡Bienvenido a FlashStore!"} message2={"Inicie sesión para continuar"} type={"Success"}/>
         </div>
-        <Link to="/home" className='buttonVolver'> <div className="arrow">&lt;</div> Volver a la página principal</Link>
+        <Link to="/Home" className='buttonVolver'> <div className="arrow">&lt;</div> Volver a la página principal</Link>
         </>
     )
 }

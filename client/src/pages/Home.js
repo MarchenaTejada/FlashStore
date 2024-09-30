@@ -1,4 +1,4 @@
-import React,{ useContext, useEffect } from 'react';
+import React,{ useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductCard from '../components/ProductCard/ProductCard';
 import GalleryPresentation from '../components/Banner/Banner';
@@ -20,10 +20,6 @@ const Home = () => {
     const handleProductClick = (product) => {
         navigate(`/product/${product.producto_id}`);
     };
-
-    useEffect(() =>{
-        document.title='FlashStore'
-      }, []); 
 
     return (
         <main>
