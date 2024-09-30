@@ -6,4 +6,4 @@ updateImgProduct(id,img, (err, results) => {
     if(err)
         console.log(err)
     else
-        console.log("Listo")});
+        console.log("Listo")}); 
