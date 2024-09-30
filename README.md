@@ -30,7 +30,7 @@ Para la primera corrección, se abordaron los problemas de anidamiento excesivo 
 
 ![code](https://github.com/user-attachments/assets/f44d86c1-75e3-4360-9a16-376c8a91340c)
 
-
+##
 La segunda y tercera corrección también se deben a la misma razón; sin embargo, el problema se encuentra en otra sección del código.
 
 ![image](https://github.com/user-attachments/assets/8cfad776-efe9-49d5-87a3-f9d331872999)
