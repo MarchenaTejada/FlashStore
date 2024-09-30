@@ -14,6 +14,14 @@ En cuanto a los detalles acerca de estos tenemos lo siguiente:
 
 Para realizar las correcciones se priorizará según el grado de severidad. En el siguiente apartado se profundizará sobre las correcciones.
 
-##Correcciones
+## Correcciones
+
+La primera corrección que se realizara será en relación con el siguiente problema:
+
+![image](https://github.com/user-attachments/assets/05a3c1ad-6839-47cf-a1ac-0a5f72735550)
+
+El problema radica en el nivel de anidamiento de la función, que es excesivo. Por lo tanto, se realizará un ajuste para reducir el grado de anidamiento y mejorar su estructura.
+
+
 
 
