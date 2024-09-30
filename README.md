@@ -47,5 +47,9 @@ En el segundo código, se convirtieron todas las funciones en async, lo que nos 
 
 Finalmente al realiar nuevamente el analisis del SonarQube obtenemos los siguientes resultados:
 
-![image](https://github.com/user-attachments/assets/9e06dffe-637c-46ee-88e6-2974840767ec)
+![image](https://github.com/user-attachments/assets/9984316b-6d5a-40e4-a9d9-5fa21a0665da)
+
+![image](https://github.com/user-attachments/assets/7cc9447f-a3f5-4eac-af41-8de0ca6722df)
+
+
 
